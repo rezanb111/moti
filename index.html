@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مطهره مجدزاده | دفتر معماری و طراحی</title>
+    <title>مطهره مجدزاده | دفتر معماری و ساخت</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- فونت فارسی -->
@@ -17,9 +17,10 @@
 
         :root {
             --bg-dark: #050608;
-            --bg-card: #111319;
+            --bg-card: #10121a;
             --accent: #f5b55f;
-            --accent-soft: rgba(245, 181, 95, 0.2);
+            --accent-soft: rgba(245, 181, 95, 0.18);
+            --accent-strong: rgba(245, 181, 95, 0.35);
             --text-main: #f5f5f5;
             --text-muted: #b3b3b3;
             --border-soft: rgba(255,255,255,0.08);
@@ -27,7 +28,7 @@
 
         body {
             font-family: 'Vazirmatn', system-ui, sans-serif;
-            background: #050608;
+            background: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
         }
@@ -41,14 +42,14 @@
             text-decoration: none;
         }
 
-        /* لایه سه‌بعدی پس‌زمینه کل صفحه */
+        /* صحنه سه‌بعدی پس‌زمینه */
         .scene-3d {
             position: fixed;
             inset: 0;
             overflow: hidden;
             pointer-events: none;
-            z-index: -2;
-            perspective: 1200px;
+            z-index: -3;
+            perspective: 1400px;
         }
 
         .layer {
@@ -85,7 +86,76 @@
             mix-blend-mode: screen;
         }
 
-        /* هدر ثابت */
+        /* لایه ۴: پنل‌های معماری شناور */
+        .layer-panels {
+            pointer-events: none;
+        }
+
+        .panel {
+            position: absolute;
+            width: 220px;
+            height: 140px;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.7)),
+                repeating-linear-gradient(135deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 4px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.8);
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            animation: floatPanel 18s linear infinite;
+            opacity: 0.9;
+        }
+
+        .panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to top, rgba(0,0,0,0.7), transparent 40%),
+                radial-gradient(circle at 10% 0, rgba(245,181,95,0.35), transparent 55%);
+            mix-blend-mode: soft-light;
+        }
+
+        .panel-line {
+            position: absolute;
+            width: 1px;
+            height: 200%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.0), rgba(255,255,255,0.6), rgba(255,255,255,0.0));
+            left: 40%;
+            top: -50%;
+            transform: rotate(18deg);
+            opacity: 0.7;
+        }
+
+        .panel-label {
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            left: 12px;
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .panel-label strong {
+            display: block;
+            color: var(--accent);
+            font-size: 11px;
+        }
+
+        @keyframes floatPanel {
+            0% {
+                transform: translate3d(0, 40px, 0) rotateX(12deg) rotateY(-18deg);
+            }
+            50% {
+                transform: translate3d(-40px, -40px, 40px) rotateX(-6deg) rotateY(10deg);
+            }
+            100% {
+                transform: translate3d(0, 40px, 0) rotateX(12deg) rotateY(-18deg);
+            }
+        }
+
+        /* هدر */
         header {
             position: fixed;
             top: 0;
@@ -93,14 +163,14 @@
             left: 0;
             z-index: 1000;
             backdrop-filter: blur(18px);
-            background: linear-gradient(to left, rgba(5,6,8,0.96), rgba(5,6,8,0.75));
+            background: linear-gradient(to left, rgba(5,6,8,0.96), rgba(5,6,8,0.78));
             border-bottom: 1px solid var(--border-soft);
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 12px 24px;
+            padding: 10px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -123,12 +193,14 @@
             font-weight: 800;
             font-size: 18px;
             color: var(--accent);
+            box-shadow: 0 0 18px rgba(245,181,95,0.7);
+            background: radial-gradient(circle at 30% 0, rgba(245,181,95,0.35), transparent 60%);
         }
 
         .brand-text {
             display: flex;
             flex-direction: column;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .brand-text strong {
@@ -163,7 +235,7 @@
         }
 
         .nav-cta {
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 999px;
             border: 1px solid var(--accent);
             font-size: 12px;
@@ -174,12 +246,12 @@
 
         .nav-cta:hover {
             transform: translateY(-1px);
-            box-shadow: 0 0 18px rgba(245,181,95,0.35);
+            box-shadow: 0 0 18px rgba(245,181,95,0.5);
             background: linear-gradient(135deg, rgba(245,181,95,0.3), rgba(245,181,95,0.08));
         }
 
         main {
-            margin-top: 72px;
+            margin-top: 70px;
             position: relative;
             z-index: 1;
         }
@@ -187,13 +259,13 @@
         section {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 60px 20px;
             position: relative;
         }
 
         /* هِرو */
         .hero {
-            min-height: calc(100vh - 72px);
+            min-height: calc(100vh - 70px);
             display: grid;
             grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
             gap: 40px;
@@ -212,7 +284,7 @@
             padding: 4px 10px;
             border-radius: 999px;
             border: 1px solid var(--border-soft);
-            background: rgba(0,0,0,0.45);
+            background: rgba(0,0,0,0.55);
             font-size: 11px;
             color: var(--text-muted);
             margin-bottom: 16px;
@@ -382,29 +454,61 @@
             background: rgba(0,0,0,0.4);
         }
 
-        .hero-image-wrapper {
+        .hero-abstract-3d {
             position: relative;
             border-radius: 22px;
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.08);
             margin-bottom: 14px;
-        }
-
-        .hero-image {
-            width: 100%;
             height: 260px;
-            object-fit: cover;
-            filter: saturate(1.1) contrast(1.05);
-            transform: scale(1.02);
+            background:
+                radial-gradient(circle at 20% 0, rgba(245,181,95,0.35), transparent 55%),
+                radial-gradient(circle at 80% 100%, rgba(255,255,255,0.08), transparent 55%),
+                conic-gradient(from 210deg, #111319, #151827, #111319);
         }
 
-        .hero-image-overlay {
+        .hero-abstract-orbit {
+            position: absolute;
+            inset: 18%;
+            border-radius: 50%;
+            border: 1px dashed rgba(255,255,255,0.18);
+            animation: orbitRotate 26s linear infinite;
+        }
+
+        .hero-abstract-orbit::before,
+        .hero-abstract-orbit::after {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 18px rgba(245,181,95,0.9);
+        }
+
+        .hero-abstract-orbit::before {
+            top: -7px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hero-abstract-orbit::after {
+            bottom: -7px;
+            right: 18%;
+        }
+
+        .hero-abstract-lines {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(5,6,8,0.9), transparent 40%);
+            background-image:
+                linear-gradient(120deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+                linear-gradient(210deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mix-blend-mode: soft-light;
+            opacity: 0.7;
         }
 
-        .hero-image-caption {
+        .hero-abstract-caption {
             position: absolute;
             bottom: 12px;
             right: 12px;
@@ -416,10 +520,15 @@
             color: var(--text-muted);
         }
 
-        .hero-image-caption strong {
+        .hero-abstract-caption strong {
             display: block;
             font-size: 13px;
             color: var(--text-main);
+        }
+
+        @keyframes orbitRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .hero-card-footer {
@@ -446,32 +555,33 @@
             margin-bottom: 4px;
         }
 
-        /* برگ‌ریزان */
-        .leaf {
+        /* ذرات کوچک (حس سه‌بعدی و شلوغ) */
+        .particle {
             position: fixed;
-            top: -40px;
-            width: 18px;
-            height: 18px;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Orange_leaf_icon.svg/1024px-Orange_leaf_icon.svg.png');
-            background-size: cover;
-            opacity: 0.8;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: rgba(245,181,95,0.9);
+            box-shadow: 0 0 10px rgba(245,181,95,0.9);
             pointer-events: none;
-            z-index: -1;
-            animation-name: fall;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
+            z-index: -2;
+            opacity: 0.0;
+            animation: particleFloat 14s linear infinite;
         }
 
-        @keyframes fall {
+        @keyframes particleFloat {
             0% {
-                transform: translate3d(0, -40px, 0) rotateZ(0deg);
+                transform: translate3d(0, 40px, 0);
                 opacity: 0;
             }
             10% {
-                opacity: 0.9;
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
             }
             100% {
-                transform: translate3d(-60px, 110vh, 0) rotateZ(260deg);
+                transform: translate3d(-40px, -120vh, 0);
                 opacity: 0;
             }
         }
@@ -549,12 +659,28 @@
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.08);
             margin-bottom: 10px;
+            height: 260px;
+            position: relative;
+            background:
+                radial-gradient(circle at 10% 0, rgba(245,181,95,0.3), transparent 55%),
+                linear-gradient(135deg, #151827, #0b0d13);
         }
 
-        .about-photo-main img {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
+        .about-photo-avatar {
+            position: absolute;
+            inset: 18%;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.7);
+            box-shadow: 0 0 24px rgba(0,0,0,0.9);
+            background:
+                radial-gradient(circle at 30% 0, rgba(245,181,95,0.4), transparent 60%),
+                radial-gradient(circle at 70% 100%, rgba(0,0,0,0.9), #050608);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--accent);
         }
 
         .about-photo-label {
@@ -640,7 +766,7 @@
             margin-bottom: 4px;
         }
 
-        /* نمونه‌کارها */
+        /* نمونه‌کارها (بدون عکس، ولی شبیه کارت پروژه) */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -657,36 +783,46 @@
             transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
-        .portfolio-item img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
         .portfolio-item:hover {
             transform: translateY(-4px);
             box-shadow: 0 18px 40px rgba(0,0,0,0.7);
             border-color: rgba(245,181,95,0.6);
         }
 
-        .portfolio-item:hover img {
-            transform: scale(1.05);
-            filter: brightness(1.05);
+        .portfolio-abstract {
+            height: 170px;
+            background:
+                radial-gradient(circle at 10% 0, rgba(245,181,95,0.35), transparent 55%),
+                radial-gradient(circle at 90% 100%, rgba(255,255,255,0.08), transparent 55%),
+                conic-gradient(from 200deg, #111319, #181b2a, #111319);
+            position: relative;
+            overflow: hidden;
         }
 
-        .portfolio-overlay {
+        .portfolio-abstract-line {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(5,6,8,0.9), transparent 40%);
+            width: 1px;
+            height: 200%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.0), rgba(255,255,255,0.7), rgba(255,255,255,0.0));
+            left: 30%;
+            top: -50%;
+            transform: rotate(18deg);
+            opacity: 0.7;
+        }
+
+        .portfolio-abstract-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 16px rgba(245,181,95,0.9);
+            right: 18%;
+            top: 26%;
         }
 
         .portfolio-caption {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            left: 10px;
+            padding: 10px 12px 12px;
             font-size: 11px;
             color: var(--text-muted);
         }
@@ -893,7 +1029,7 @@
 
         footer {
             border-top: 1px solid var(--border-soft);
-            padding: 18px 24px 26px;
+            padding: 18px 20px 26px;
             font-size: 11px;
             color: var(--text-muted);
             text-align: center;
@@ -941,7 +1077,7 @@
                 grid-template-columns: minmax(0, 1fr);
             }
             section {
-                padding: 40px 18px;
+                padding: 40px 16px;
             }
         }
     </style>
@@ -953,6 +1089,7 @@
     <div class="layer layer-gradient" data-depth="0.08"></div>
     <div class="layer layer-lines" data-depth="0.16"></div>
     <div class="layer layer-lights" data-depth="0.24"></div>
+    <div class="layer layer-panels" data-depth="0.32" id="panels-layer"></div>
 </div>
 
 <header>
@@ -986,23 +1123,23 @@
         <div class="hero-left">
             <div class="hero-kicker">
                 <span class="dot"></span>
-                <span>دفتر معماری و طراحی «برگ‌ریزان»</span>
+                <span>دفتر معماری مطهره مجدزاده</span>
             </div>
             <h1 class="hero-title">
                 معماری که<br>
-                <span class="highlight">روایت زندگی</span> را در جزئیات<br>
-                فضاها می‌نویسد.
+                <span class="highlight">نور، ماده و زندگی</span><br>
+                را در یک روایت واحد جمع می‌کند.
             </h1>
             <p class="hero-subtitle">
-                مطهره مجدزاده، دکترای معماری، با رویکردی شاعرانه و در عین حال علمی، فضاهایی خلق می‌کند
-                که میان نور، ماده، بافت و خاطره، تعادلی عمیق برقرار می‌کنند؛ از ویلاهای معاصر تا فضاهای عمومی
-                شهری و پروژه‌های بازآفرینی بافت‌های قدیمی.
+                مطهره مجدزاده، دکترای معماری، با رویکردی علمی و شاعرانه، فضاهایی خلق می‌کند
+                که میان نور، بافت، سکوت و زندگی روزمره تعادل برقرار می‌کنند؛ از ویلاهای معاصر
+                تا فضاهای عمومی و پروژه‌های بازآفرینی شهری.
             </p>
 
             <div class="hero-tags">
                 <span class="hero-tag">طراحی معماری معاصر</span>
-                <span class="hero-tag">بازآفرینی بافت‌های شهری</span>
                 <span class="hero-tag">طراحی داخلی مفهومی</span>
+                <span class="hero-tag">بازآفرینی بافت‌های شهری</span>
                 <span class="hero-tag">نظارت و اجرای پروژه</span>
             </div>
 
@@ -1036,21 +1173,20 @@
             <div class="hero-card">
                 <div class="hero-card-header">
                     <div class="hero-card-title">
-                        پروژه منتخب
+                        پروژه‌ی مفهومی
                         <strong>خانه‌ی نور و سایه</strong>
                     </div>
                     <div class="hero-card-badge">
                         Residential Concept · 2025
                     </div>
                 </div>
-                <div class="hero-image-wrapper">
-                    <!-- اینجا لینک یک عکس معماری مدرن بگذار -->
-                    <img class="hero-image" src="IMAGE_URL_HERE_1" alt="پروژه معماری مدرن">
-                    <div class="hero-image-overlay"></div>
-                    <div class="hero-image-caption">
+                <div class="hero-abstract-3d">
+                    <div class="hero-abstract-lines"></div>
+                    <div class="hero-abstract-orbit"></div>
+                    <div class="hero-abstract-caption">
                         <div>
                             <strong>تعادل میان شفافیت و حریم</strong>
-                            <span>طراحی ویلا با محوریت نور طبیعی و حیاط مرکزی</span>
+                            <span>حیاط مرکزی، نور کنترل‌شده و دیدهای قاب‌شده به طبیعت</span>
                         </div>
                         <div>
                             <span>مساحت: ۴۵۰ مترمربع</span><br>
@@ -1080,15 +1216,15 @@
     <section id="about">
         <h2 class="section-title">درباره‌ی مطهره مجدزاده</h2>
         <p class="section-subtitle">
-            دکترای معماری | پژوهشگر، طراح و مدیر پروژه در حوزه‌ی فضاهای معاصر و بازآفرینی شهری
+            دکترای معماری | طراح، پژوهشگر و مدیر پروژه در حوزه‌ی فضاهای معاصر و بازآفرینی شهری
         </p>
 
         <div class="about-grid">
             <div>
                 <p class="about-text">
                     مطهره مجدزاده، معمار و پژوهشگری است که میان جهان نظری معماری و واقعیت ساخت‌وساز
-                    پل می‌زند. او با تکیه بر دانش آکادمیک، تجربه‌ی میدانی و حساسیت شاعرانه نسبت به
-                    جزئیات، پروژه‌هایی خلق می‌کند که نه فقط «ساختمان»، بلکه «تجربه‌ی زیستن» هستند.
+                    پل می‌زند. او با تکیه بر دانش آکادمیک، تجربه‌ی میدانی و حساسیت نسبت به جزئیات،
+                    پروژه‌هایی خلق می‌کند که نه فقط «ساختمان»، بلکه «تجربه‌ی زیستن» هستند.
                 </p>
                 <p class="about-text" style="margin-top:10px;">
                     از طراحی ویلاهای مینیمال در بسترهای طبیعی تا فضاهای عمومی شهری و پروژه‌های
@@ -1124,12 +1260,13 @@
 
             <div class="about-photo-card">
                 <div class="about-photo-main">
-                    <!-- اینجا می‌تونی عکس پرتره حرفه‌ای یا فضای کاری بذاری -->
-                    <img src="IMAGE_URL_HERE_2" alt="مطهره مجدزاده">
+                    <div class="about-photo-avatar">
+                        م
+                    </div>
                 </div>
                 <div class="about-photo-label">
                     <span><strong>مطهره مجدزاده</strong>دکترای معماری · Founder & Lead Architect</span>
-                    <span>Studio: برگ‌ریزان | Dubai</span>
+                    <span>Studio · Dubai</span>
                 </div>
             </div>
         </div>
@@ -1139,7 +1276,7 @@
     <section id="philosophy">
         <h2 class="section-title">فلسفه‌ی طراحی و رویکرد</h2>
         <p class="section-subtitle">
-            معماری به‌عنوان روایت؛ هر پروژه یک داستان است که در پلان، مقطع، نور و سایه نوشته می‌شود.
+            معماری به‌عنوان روایت؛ هر پروژه داستانی است که در پلان، مقطع، نور و سایه نوشته می‌شود.
         </p>
 
         <div class="philosophy-grid">
@@ -1154,8 +1291,8 @@
                 <div class="philosophy-card">
                     <strong>هر پروژه، یک گفت‌وگو است.</strong><br>
                     از نخستین جلسه‌ی گفت‌وگو با کارفرما تا لحظه‌ای که نور از لبه‌ی پنجره روی
-                    کف می‌نشیند، فرآیند طراحی برای ما یک گفت‌وگوی مداوم است؛ میان خواسته‌ها،
-                    محدودیت‌ها، زمینه‌ی شهری، اقلیم، نور، ماده و زندگی روزمره‌ی کاربران.
+                    کف می‌نشیند، فرآیند طراحی یک گفت‌وگوی مداوم است؛ میان خواسته‌ها، محدودیت‌ها،
+                    زمینه‌ی شهری، اقلیم، نور، ماده و زندگی روزمره‌ی کاربران.
                     <div class="philosophy-points">
                         <div class="philosophy-point">
                             <strong>گوش دادن عمیق:</strong> فهم دقیق سبک زندگی، نیازها و رؤیاهای کارفرما
@@ -1204,51 +1341,63 @@
 
         <div class="portfolio-grid">
             <div class="portfolio-item">
-                <img src="IMAGE_URL_HERE_3" alt="پروژه ۱">
-                <div class="portfolio-overlay"></div>
+                <div class="portfolio-abstract">
+                    <div class="portfolio-abstract-line"></div>
+                    <div class="portfolio-abstract-dot"></div>
+                </div>
                 <div class="portfolio-caption">
                     <strong>ویلا «خط نور»</strong>
                     <span>طراحی ویلا در حاشیه‌ی شهر · محوریت دید به طبیعت و حیاط مرکزی</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="IMAGE_URL_HERE_4" alt="پروژه ۲">
-                <div class="portfolio-overlay"></div>
+                <div class="portfolio-abstract">
+                    <div class="portfolio-abstract-line" style="left:60%;transform:rotate(-16deg);"></div>
+                    <div class="portfolio-abstract-dot" style="right:26%;top:40%;"></div>
+                </div>
                 <div class="portfolio-caption">
                     <strong>ساختمان اداری «لایه‌های شفاف»</strong>
                     <span>پوسته‌ی دو لایه برای کنترل نور و ایجاد حریم بصری</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="IMAGE_URL_HERE_5" alt="پروژه ۳">
-                <div class="portfolio-overlay"></div>
+                <div class="portfolio-abstract">
+                    <div class="portfolio-abstract-line" style="left:45%;"></div>
+                    <div class="portfolio-abstract-dot" style="right:20%;top:30%;"></div>
+                </div>
                 <div class="portfolio-caption">
                     <strong>بازآفرینی خانه‌ی قدیمی</strong>
                     <span>ترکیب معماری سنتی با جزئیات معاصر در بافت تاریخی</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="IMAGE_URL_HERE_6" alt="پروژه ۴">
-                <div class="portfolio-overlay"></div>
+                <div class="portfolio-abstract">
+                    <div class="portfolio-abstract-line" style="left:35%;transform:rotate(-22deg);"></div>
+                    <div class="portfolio-abstract-dot" style="right:30%;top:35%;"></div>
+                </div>
                 <div class="portfolio-caption">
                     <strong>گالری هنر شهری</strong>
                     <span>فضای نمایش هنر معاصر با نور کنترل‌شده و مسیرهای سیال</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="IMAGE_URL_HERE_7" alt="پروژه ۵">
-                <div class="portfolio-overlay"></div>
+                <div class="portfolio-abstract">
+                    <div class="portfolio-abstract-line" style="left:55%;"></div>
+                    <div class="portfolio-abstract-dot" style="right:18%;top:45%;"></div>
+                </div>
                 <div class="portfolio-caption">
                     <strong>کافه «حیاط پنهان»</strong>
                     <span>فضای نیمه‌باز با حیاط مرکزی و بازی نور و سایه</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="IMAGE_URL_HERE_8" alt="پروژه ۶">
-                <div class="portfolio-overlay"></div>
+                <div class="portfolio-abstract">
+                    <div class="portfolio-abstract-line" style="left:40%;transform:rotate(10deg);"></div>
+                    <div class="portfolio-abstract-dot" style="right:24%;top:28%;"></div>
+                </div>
                 <div class="portfolio-caption">
-                    <strong>پروژه‌ی مفهومی «برگ‌ریزان»</strong>
-                    <span>الهام از حرکت برگ‌ها در باد برای طراحی پوسته‌ی ساختمان</span>
+                    <strong>پروژه‌ی مفهومی پوسته‌ی متحرک</strong>
+                    <span>الهام از حرکت نور و سایه روی پوسته‌ی ساختمان</span>
                 </div>
             </div>
         </div>
@@ -1427,18 +1576,18 @@
                     راه‌های زیر در ارتباط باشید:
                 </p>
                 <p style="margin-top:10px;">
-                    ایمیل: <strong>info@mahdzadeh-architecture.com</strong><br>
+                    ایمیل: <strong>info@majdzadeh-architecture.com</strong><br>
                     تلفن: <strong>+971-XX-XXX-XXXX</strong>
                 </p>
 
                 <div class="social-row">
                     <div class="social-pill">
                         <span class="icon"></span>
-                        <span>Instagram · @mahdzadeh.arch</span>
+                        <span>Instagram · @majdzadeh.arch</span>
                     </div>
                     <div class="social-pill">
                         <span class="icon"></span>
-                        <span>LinkedIn · Mahdazadeh Studio</span>
+                        <span>LinkedIn · Mahdzadeh Studio</span>
                     </div>
                     <div class="social-pill">
                         <span class="icon"></span>
@@ -1451,52 +1600,85 @@
 </main>
 
 <footer>
-    © <span id="year"></span> دفتر معماری <span class="highlight">مطهره مجدزاده</span> · برگ‌ریزانِ فضا، نور و زندگی.
+    © <span id="year"></span> دفتر معماری <span class="highlight">مطهره مجدزاده</span> · نور، ماده و زندگی در یک قاب.
 </footer>
 
 <script>
     // سال فوتر
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // برگ‌ریزان
-    function createLeaf() {
-        const leaf = document.createElement('div');
-        leaf.classList.add('leaf');
-
-        const size = Math.random() * 14 + 10;
-        leaf.style.width = size + 'px';
-        leaf.style.height = size + 'px';
+    // ذرات
+    function createParticle() {
+        const p = document.createElement('div');
+        p.classList.add('particle');
 
         const startX = Math.random() * window.innerWidth;
-        leaf.style.left = startX + 'px';
-
-        const duration = Math.random() * 10 + 10;
-        leaf.style.animationDuration = duration + 's';
+        const startY = window.innerHeight + Math.random() * 80;
+        p.style.left = startX + 'px';
+        p.style.top = startY + 'px';
 
         const delay = Math.random() * 10;
-        leaf.style.animationDelay = delay + 's';
+        const duration = 10 + Math.random() * 10;
+        p.style.animationDelay = delay + 's';
+        p.style.animationDuration = duration + 's';
 
-        const rotate = Math.random() * 360;
-        leaf.style.transform = 'rotate(' + rotate + 'deg)';
-
-        document.body.appendChild(leaf);
+        document.body.appendChild(p);
 
         setTimeout(() => {
-            leaf.remove();
-        }, (duration + delay) * 1000);
+            p.remove();
+        }, (delay + duration) * 1000);
     }
 
-    setInterval(createLeaf, 800);
-    for (let i = 0; i < 15; i++) {
-        setTimeout(createLeaf, i * 400);
+    for (let i = 0; i < 40; i++) {
+        setTimeout(createParticle, i * 300);
+    }
+    setInterval(createParticle, 1200);
+
+    // پنل‌های معماری شناور
+    const panelsLayer = document.getElementById('panels-layer');
+    const panelLabels = [
+        'مقطع طولی · نورگیر مرکزی',
+        'پلان تیپ طبقات اداری',
+        'پوسته‌ی دو لایه‌ی شفاف',
+        'حیاط میانی و مسیر حرکت',
+        'فضای نیمه‌باز و تراس',
+        'نمای جنوبی با سایه‌انداز'
+    ];
+
+    function createPanel(index) {
+        const panel = document.createElement('div');
+        panel.classList.add('panel');
+
+        const x = Math.random() * 80 + 10;
+        const y = Math.random() * 80 + 10;
+        panel.style.left = x + '%';
+        panel.style.top = y + '%';
+
+        const scale = 0.7 + Math.random() * 0.6;
+        panel.style.transform = `scale(${scale})`;
+
+        const line = document.createElement('div');
+        line.classList.add('panel-line');
+        panel.appendChild(line);
+
+        const label = document.createElement('div');
+        label.classList.add('panel-label');
+        label.innerHTML = `<strong>Sketch ${index + 1}</strong>${panelLabels[index % panelLabels.length]}`;
+        panel.appendChild(label);
+
+        panelsLayer.appendChild(panel);
     }
 
-    // پارالاکس سه‌بعدی با حرکت موس
+    for (let i = 0; i < 6; i++) {
+        createPanel(i);
+    }
+
+    // پارالاکس سه‌بعدی با حرکت موس / لمس
     const layers = document.querySelectorAll('.scene-3d .layer');
 
-    function handleParallax(e) {
-        const x = (e.clientX / window.innerWidth) - 0.5;
-        const y = (e.clientY / window.innerHeight) - 0.5;
+    function applyParallax(xNorm, yNorm) {
+        const x = xNorm - 0.5;
+        const y = yNorm - 0.5;
 
         layers.forEach(layer => {
             const depth = parseFloat(layer.getAttribute('data-depth')) || 0;
@@ -1510,7 +1692,14 @@
         });
     }
 
-    window.addEventListener('mousemove', handleParallax);
+    window.addEventListener('mousemove', (e) => {
+        applyParallax(e.clientX / window.innerWidth, e.clientY / window.innerHeight);
+    });
+
+    window.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        applyParallax(touch.clientX / window.innerWidth, touch.clientY / window.innerHeight);
+    }, { passive: true });
 </script>
 
 </body>
