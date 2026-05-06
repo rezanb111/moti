@@ -1,587 +1,570 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>مطهره مجدزاده | استودیو معماری پارامتریک</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>وبسایت مطهره مجدزاده</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{
-      --bg:#02030a;
-      --card:#070918;
-      --accent:#ffb86c;
-      --accent2:#7df9ff;
-      --text:#f5f5f5;
-      --muted:#b3b3b3;
-      --border:rgba(255,255,255,0.08);
-    }
-    body{
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
-      direction:rtl;
-    }
-    html{scroll-behavior:smooth}
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050509;
+  --card:#101018;
+  --accent:#ffb86c;
+  --accent2:#7df9ff;
+  --text:#f5f5f5;
+  --muted:#b3b3b3;
+  --border:rgba(255,255,255,0.12);
+}
+body{
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  direction:rtl;
+}
+html{scroll-behavior:smooth}
 
-    /* ---------- Intro (Welcome Screen) ---------- */
-    #intro-wrapper{
-      position:fixed;
-      inset:0;
-      z-index:999;
-      background:black;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-    }
-    #intro-video{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-    #intro-overlay{
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at 10% 0,rgba(0,0,0,0.1),rgba(0,0,0,0.9));
-    }
-    #intro-text{
-      position:relative;
-      text-align:center;
-      font-size:26px;
-      line-height:1.8;
-      color:#fff;
-      text-shadow:0 0 18px #000;
-      opacity:0;
-      animation:introFade 3s forwards 1s;
-      padding:0 20px;
-    }
-    #intro-text span{
-      display:block;
-      font-size:18px;
-      color:#ddd;
-      margin-top:8px;
-    }
-    #intro-enter{
-      position:relative;
-      margin-top:30px;
-      padding:12px 28px;
-      border-radius:999px;
-      border:none;
-      font-size:16px;
-      cursor:pointer;
-      background:linear-gradient(135deg,var(--accent2),var(--accent));
-      color:#000;
-      box-shadow:0 0 20px rgba(125,249,255,0.9);
-      display:none;
-    }
-    @keyframes introFade{
-      to{opacity:1}
-    }
+/* ---------- Intro ---------- */
+#intro-wrapper{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+#intro-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+#intro-overlay{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 10% 0,rgba(0,0,0,0.1),rgba(0,0,0,0.9));
+}
+#intro-text{
+  position:relative;
+  text-align:center;
+  font-size:26px;
+  line-height:1.8;
+  color:#fff;
+  text-shadow:0 0 18px #000;
+  opacity:0;
+  animation:introFade 3s forwards 1s;
+  padding:0 20px;
+}
+#intro-text span{
+  display:block;
+  font-size:16px;
+  color:#ddd;
+  margin-top:8px;
+}
+#intro-enter{
+  position:relative;
+  margin-top:30px;
+  padding:12px 28px;
+  border-radius:999px;
+  border:none;
+  font-size:16px;
+  cursor:pointer;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  color:#000;
+  box-shadow:0 0 20px rgba(125,249,255,0.9);
+  display:none;
+}
+@keyframes introFade{to{opacity:1}}
 
-    /* ---------- Background Video ---------- */
-    .bg-video-wrapper{
-      position:fixed;
-      inset:0;
-      z-index:-3;
-      overflow:hidden;
-    }
-    .bg-video{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      opacity:.55;
-    }
-    .bg-overlay{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      background:
-        radial-gradient(circle at 0 0,rgba(0,0,0,0.4),transparent 55%),
-        radial-gradient(circle at 100% 100%,rgba(0,0,0,0.8),rgba(0,0,0,0.95));
-    }
+/* ---------- Background video ---------- */
+.bg-video-wrapper{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  overflow:hidden;
+}
+.bg-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.55;
+}
+.bg-overlay{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 0 0,rgba(0,0,0,0.4),transparent 55%),
+    radial-gradient(circle at 100% 100%,rgba(0,0,0,0.9),rgba(0,0,0,0.98));
+}
 
-    /* ---------- Header ---------- */
-    header{
-      position:fixed;
-      top:0;right:0;left:0;
-      z-index:10;
-      backdrop-filter:blur(18px);
-      background:linear-gradient(to left,rgba(2,3,10,0.96),rgba(2,3,10,0.78));
-      border-bottom:1px solid var(--border);
-    }
-    .nav-container{
-      max-width:1200px;
-      margin:0 auto;
-      padding:10px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .brand-logo{
-      width:36px;height:36px;border-radius:50%;
-      border:1px solid var(--accent2);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:800;font-size:18px;color:var(--accent2);
-      box-shadow:0 0 18px rgba(125,249,255,0.8),0 0 32px rgba(255,184,108,0.5);
-      background:
-        radial-gradient(circle at 30% 0,rgba(125,249,255,0.5),transparent 60%),
-        radial-gradient(circle at 70% 100%,rgba(255,184,108,0.4),transparent 60%);
-    }
-    .brand-text{display:flex;flex-direction:column;font-size:11px}
-    .brand-text strong{font-size:15px}
+/* ---------- Header ---------- */
+header{
+  position:fixed;
+  top:0;right:0;left:0;
+  z-index:10;
+  backdrop-filter:blur(18px);
+  background:linear-gradient(to left,rgba(5,5,12,0.96),rgba(5,5,12,0.78));
+  border-bottom:1px solid var(--border);
+}
+.nav-container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.brand-logo{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--accent2);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:18px;color:var(--accent2);
+  box-shadow:0 0 18px rgba(125,249,255,0.8),0 0 32px rgba(255,184,108,0.5);
+  background:
+    radial-gradient(circle at 30% 0,rgba(125,249,255,0.5),transparent 60%),
+    radial-gradient(circle at 70% 100%,rgba(255,184,108,0.4),transparent 60%);
+}
+.brand-text{display:flex;flex-direction:column;font-size:11px}
+.brand-text strong{font-size:15px}
 
-    nav ul{
-      list-style:none;
-      display:flex;
-      gap:18px;
-      font-size:13px;
-    }
-    nav a{
-      position:relative;
-      padding-bottom:4px;
-      text-decoration:none;
-      color:var(--text);
-    }
-    nav a::after{
-      content:"";
-      position:absolute;
-      right:0;bottom:0;
-      width:0;height:2px;
-      background:linear-gradient(90deg,var(--accent2),var(--accent));
-      transition:width .25s ease;
-    }
-    nav a:hover::after{width:100%}
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:18px;
+  font-size:13px;
+}
+nav a{
+  position:relative;
+  padding-bottom:4px;
+  text-decoration:none;
+  color:var(--text);
+}
+nav a::after{
+  content:"";
+  position:absolute;
+  right:0;bottom:0;
+  width:0;height:2px;
+  background:linear-gradient(90deg,var(--accent2),var(--accent));
+  transition:width .25s ease;
+}
+nav a:hover::after{width:100%}
 
-    .nav-right{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .lang-toggle{
-      font-size:11px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(0,0,0,0.4);
-      color:var(--muted);
-      padding:4px 10px;
-      cursor:pointer;
-    }
-    .nav-cta{
-      padding:7px 14px;
-      border-radius:999px;
-      border:1px solid var(--accent2);
-      font-size:12px;
-      cursor:pointer;
-      background:radial-gradient(circle at 0 0,rgba(125,249,255,0.3),transparent 60%);
-      color:var(--accent2);
-    }
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.nav-cta{
+  padding:7px 14px;
+  border-radius:999px;
+  border:1px solid var(--accent2);
+  font-size:12px;
+  cursor:pointer;
+  background:radial-gradient(circle at 0 0,rgba(125,249,255,0.3),transparent 60%);
+  color:var(--accent2);
+}
+.burger{
+  display:none;
+  width:26px;height:18px;
+  flex-direction:column;
+  justify-content:space-between;
+  cursor:pointer;
+}
+.burger span{
+  height:2px;
+  background:var(--text);
+  border-radius:999px;
+}
 
-    .burger{
-      display:none;
-      width:26px;height:18px;
-      flex-direction:column;
-      justify-content:space-between;
-      cursor:pointer;
-    }
-    .burger span{
-      height:2px;
-      background:var(--text);
-      border-radius:999px;
-    }
+/* ---------- Layout ---------- */
+main{
+  margin-top:70px;
+  position:relative;
+  z-index:1;
+}
+section{
+  max-width:1200px;
+  margin:0 auto;
+  padding:60px 18px;
+  position:relative;
+}
+.section-title{
+  font-size:24px;
+  margin-bottom:8px;
+}
+.section-subtitle{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:26px;
+}
 
-    /* ---------- Layout ---------- */
-    main{
-      margin-top:70px;
-      position:relative;
-      z-index:1;
-    }
-    section{
-      max-width:1200px;
-      margin:0 auto;
-      padding:60px 18px;
-      position:relative;
-    }
-    .section-title{
-      font-size:24px;
-      margin-bottom:8px;
-    }
-    .section-subtitle{
-      font-size:13px;
-      color:var(--muted);
-      margin-bottom:26px;
-    }
+/* ---------- Hero ---------- */
+.hero{
+  min-height:calc(100vh - 70px);
+  display:grid;
+  grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+  gap:40px;
+  align-items:center;
+}
+.hero-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:rgba(5,5,12,0.7);
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:16px;
+}
+.hero-kicker .dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--accent2);
+  box-shadow:0 0 12px rgba(125,249,255,0.9);
+}
+.hero-title{
+  font-size:36px;
+  line-height:1.4;
+  margin-bottom:16px;
+}
+.hero-title span{
+  background:linear-gradient(120deg,var(--accent2),var(--accent));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.hero-subtitle{
+  font-size:14px;
+  color:var(--muted);
+  max-width:520px;
+  line-height:1.9;
+  margin-bottom:26px;
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:24px;
+}
+.btn-primary{
+  padding:10px 20px;
+  border-radius:999px;
+  border:none;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  color:#050608;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+}
+.btn-ghost{
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text);
+  font-size:13px;
+  cursor:pointer;
+}
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  font-size:11px;
+  color:var(--muted);
+}
+.hero-meta strong{
+  font-size:13px;
+  color:var(--accent2);
+}
 
-    /* ---------- Hero ---------- */
-    .hero{
-      min-height:calc(100vh - 70px);
-      display:grid;
-      grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
-      gap:40px;
-      align-items:center;
-    }
-    .hero-kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(2,3,10,0.7);
-      font-size:11px;
-      color:var(--muted);
-      margin-bottom:16px;
-    }
-    .hero-kicker .dot{
-      width:7px;height:7px;border-radius:50%;
-      background:var(--accent2);
-      box-shadow:0 0 12px rgba(125,249,255,0.9);
-    }
-    .hero-title{
-      font-size:38px;
-      line-height:1.3;
-      margin-bottom:16px;
-    }
-    .hero-title span{
-      background:linear-gradient(120deg,var(--accent2),var(--accent));
-      -webkit-background-clip:text;
-      color:transparent;
-    }
-    .hero-subtitle{
-      font-size:14px;
-      color:var(--muted);
-      max-width:520px;
-      line-height:1.9;
-      margin-bottom:26px;
-    }
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-bottom:24px;
-    }
-    .btn-primary{
-      padding:10px 20px;
-      border-radius:999px;
-      border:none;
-      background:linear-gradient(135deg,var(--accent2),var(--accent));
-      color:#050608;
-      font-size:13px;
-      font-weight:600;
-      cursor:pointer;
-    }
-    .btn-ghost{
-      padding:10px 18px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:transparent;
-      color:var(--text);
-      font-size:13px;
-      cursor:pointer;
-    }
-    .hero-meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:18px;
-      font-size:11px;
-      color:var(--muted);
-    }
-    .hero-meta strong{
-      font-size:13px;
-      color:var(--accent2);
-    }
+.hero-right{position:relative}
+.hero-card{
+  border-radius:26px;
+  padding:16px;
+  background:radial-gradient(circle at top,#181c35 0,#050814 55%);
+  border:1px solid var(--border);
+  box-shadow:0 24px 60px rgba(0,0,0,0.8);
+  overflow:hidden;
+}
+.hero-media{
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.08);
+  height:260px;
+  position:relative;
+}
+.hero-media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.hero-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.7),transparent 40%);
+}
+.hero-media-caption{
+  position:absolute;
+  bottom:10px;
+  right:12px;
+  left:12px;
+  font-size:11px;
+  color:var(--muted);
+  z-index:2;
+}
+.hero-media-caption strong{
+  display:block;
+  color:var(--text);
+  margin-bottom:2px;
+}
 
-    .hero-right{
-      position:relative;
-    }
-    .hero-card{
-      border-radius:26px;
-      padding:16px;
-      background:radial-gradient(circle at top,#181c35 0,#050814 55%);
-      border:1px solid var(--border);
-      box-shadow:0 24px 60px rgba(0,0,0,0.8);
-      overflow:hidden;
-    }
-    .hero-media{
-      border-radius:20px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,0.08);
-      height:260px;
-      position:relative;
-    }
-    .hero-media video{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-    .hero-media::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top,rgba(0,0,0,0.7),transparent 40%);
-    }
-    .hero-media-caption{
-      position:absolute;
-      bottom:10px;
-      right:12px;
-      left:12px;
-      font-size:11px;
-      color:var(--muted);
-      z-index:2;
-    }
-    .hero-media-caption strong{
-      display:block;
-      color:var(--text);
-      margin-bottom:2px;
-    }
+/* ---------- About ---------- */
+.about-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+  gap:32px;
+}
+.about-text{
+  font-size:14px;
+  color:var(--muted);
+  line-height:2;
+}
+.about-card{
+  border-radius:22px;
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:16px;
+}
+.about-video{
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.08);
+  height:230px;
+}
+.about-video video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-    /* ---------- About ---------- */
-    .about-grid{
-      display:grid;
-      grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
-      gap:32px;
-    }
-    .about-text{
-      font-size:14px;
-      color:var(--muted);
-      line-height:2;
-    }
-    .about-card{
-      border-radius:22px;
-      background:var(--card);
-      border:1px solid var(--border);
-      padding:16px;
-    }
-    .about-video{
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,0.08);
-      height:230px;
-    }
-    .about-video video{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
+/* ---------- Services ---------- */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+.service-card{
+  border-radius:18px;
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:16px;
+  font-size:13px;
+  color:var(--muted);
+}
+.service-card h3{
+  font-size:15px;
+  margin-bottom:8px;
+  color:var(--text);
+}
 
-    /* ---------- Services ---------- */
-    .services-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:18px;
-    }
-    .service-card{
-      border-radius:18px;
-      background:var(--card);
-      border:1px solid var(--border);
-      padding:16px;
-      font-size:13px;
-      color:var(--muted);
-    }
-    .service-card h3{
-      font-size:15px;
-      margin-bottom:8px;
-      color:var(--text);
-    }
+/* ---------- Portfolio ---------- */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+}
+.portfolio-item{
+  border-radius:18px;
+  overflow:hidden;
+  background:#050814;
+  border:1px solid var(--border);
+}
+.portfolio-thumb{
+  height:170px;
+  position:relative;
+  overflow:hidden;
+}
+.portfolio-thumb video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.portfolio-thumb::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.6),transparent 40%);
+}
+.portfolio-caption{
+  padding:10px 12px 12px;
+  font-size:11px;
+  color:var(--muted);
+}
+.portfolio-caption strong{
+  display:block;
+  color:var(--text);
+  margin-bottom:2px;
+}
 
-    /* ---------- Portfolio ---------- */
-    .portfolio-grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:16px;
-    }
-    .portfolio-item{
-      border-radius:18px;
-      overflow:hidden;
-      background:#050814;
-      border:1px solid var(--border);
-    }
-    .portfolio-thumb{
-      height:170px;
-      position:relative;
-      overflow:hidden;
-    }
-    .portfolio-thumb video{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-    .portfolio-thumb::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top,rgba(0,0,0,0.6),transparent 40%);
-    }
-    .portfolio-caption{
-      padding:10px 12px 12px;
-      font-size:11px;
-      color:var(--muted);
-    }
-    .portfolio-caption strong{
-      display:block;
-      color:var(--text);
-      margin-bottom:2px;
-    }
+/* ---------- Sections with videos ---------- */
+.video-section-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+.video-card{
+  border-radius:18px;
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:12px;
+  font-size:12px;
+  color:var(--muted);
+}
+.video-card video{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:8px;
+}
 
-    /* ---------- Testimonials ---------- */
-    .testimonials{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:16px;
-    }
-    .testimonial{
-      border-radius:18px;
-      background:var(--card);
-      border:1px solid var(--border);
-      padding:16px;
-      font-size:13px;
-      color:var(--muted);
-    }
-    .testimonial strong{
-      display:block;
-      margin-bottom:6px;
-      color:var(--accent2);
-    }
+/* ---------- Contact ---------- */
+.contact-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+  gap:28px;
+}
+.contact-card{
+  padding:18px;
+  border-radius:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+}
+.contact-card form{
+  display:grid;
+  gap:12px;
+}
+.form-row{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+label{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:4px;
+  display:block;
+}
+input,textarea{
+  width:100%;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:rgba(0,0,0,0.4);
+  color:var(--text);
+  font-family:inherit;
+  font-size:12px;
+}
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+.contact-info{
+  font-size:13px;
+  color:var(--muted);
+  line-height:2;
+}
+.contact-info strong{
+  color:var(--accent2);
+}
 
-    /* ---------- Contact ---------- */
-    .contact-grid{
-      display:grid;
-      grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
-      gap:28px;
-    }
-    .contact-card{
-      padding:18px;
-      border-radius:20px;
-      background:var(--card);
-      border:1px solid var(--border);
-    }
-    .contact-card form{
-      display:grid;
-      gap:12px;
-    }
-    .form-row{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:10px;
-    }
-    label{
-      font-size:12px;
-      color:var(--muted);
-      margin-bottom:4px;
-      display:block;
-    }
-    input,textarea{
-      width:100%;
-      padding:8px 10px;
-      border-radius:10px;
-      border:1px solid var(--border);
-      background:rgba(0,0,0,0.4);
-      color:var(--text);
-      font-family:inherit;
-      font-size:12px;
-    }
-    textarea{
-      min-height:100px;
-      resize:vertical;
-    }
-    .contact-info{
-      font-size:13px;
-      color:var(--muted);
-      line-height:2;
-    }
-    .contact-info strong{
-      color:var(--accent2);
-    }
+/* ---------- Social ---------- */
+.social-row{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+}
+.social-icon{
+  width:32px;height:32px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.5);
+  cursor:pointer;
+  transition:.2s;
+}
+.social-icon svg{
+  width:16px;height:16px;
+  fill:var(--muted);
+}
+.social-icon:hover{
+  border-color:var(--accent2);
+  box-shadow:0 0 14px rgba(125,249,255,0.7);
+}
+.social-icon:hover svg{
+  fill:var(--accent2);
+}
 
-    /* ---------- Social ---------- */
-    .social-row{
-      display:flex;
-      gap:10px;
-      margin-top:14px;
-    }
-    .social-icon{
-      width:32px;height:32px;
-      border-radius:50%;
-      border:1px solid var(--border);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(0,0,0,0.5);
-      cursor:pointer;
-      transition:.2s;
-    }
-    .social-icon svg{
-      width:16px;height:16px;
-      fill:var(--muted);
-    }
-    .social-icon:hover{
-      border-color:var(--accent2);
-      box-shadow:0 0 14px rgba(125,249,255,0.7);
-    }
-    .social-icon:hover svg{
-      fill:var(--accent2);
-    }
+footer{
+  border-top:1px solid var(--border);
+  padding:18px 18px 26px;
+  font-size:11px;
+  color:var(--muted);
+  text-align:center;
+  background:#050509;
+  margin-top:20px;
+}
+footer span{
+  color:var(--accent2);
+}
 
-    footer{
-      border-top:1px solid var(--border);
-      padding:18px 18px 26px;
-      font-size:11px;
-      color:var(--muted);
-      text-align:center;
-      background:#02030a;
-      margin-top:20px;
-    }
-    footer span{
-      color:var(--accent2);
-    }
-
-    /* ---------- English Mode ---------- */
-    .en body{direction:ltr}
-
-    /* ---------- Responsive ---------- */
-    @media(max-width:960px){
-      .hero{
-        grid-template-columns:minmax(0,1fr);
-      }
-      .hero-right{order:-1}
-      .about-grid,.contact-grid{
-        grid-template-columns:minmax(0,1fr);
-      }
-      .services-grid,.portfolio-grid,.testimonials{
-        grid-template-columns:repeat(2,minmax(0,1fr));
-      }
-    }
-    @media(max-width:720px){
-      nav ul{
-        position:fixed;
-        top:60px;right:0;left:0;
-        background:rgba(2,3,10,0.96);
-        flex-direction:column;
-        padding:10px 18px 14px;
-        display:none;
-      }
-      nav ul.open{display:flex}
-      .burger{display:flex}
-      .hero-title{font-size:30px}
-      section{padding:40px 16px}
-      .services-grid,.portfolio-grid,.testimonials{
-        grid-template-columns:minmax(0,1fr);
-      }
-    }
-  </style>
+/* ---------- Responsive ---------- */
+@media(max-width:960px){
+  .hero{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .hero-right{order:-1}
+  .about-grid,.contact-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .services-grid,.portfolio-grid,.video-section-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:720px){
+  nav ul{
+    position:fixed;
+    top:60px;right:0;left:0;
+    background:rgba(5,5,12,0.96);
+    flex-direction:column;
+    padding:10px 18px 14px;
+    display:none;
+  }
+  nav ul.open{display:flex}
+  .burger{display:flex}
+  .hero-title{font-size:30px}
+  section{padding:40px 16px}
+  .services-grid,.portfolio-grid,.video-section-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+</style>
 </head>
 <body>
 
-<!-- Intro Screen -->
+<!-- Intro -->
 <div id="intro-wrapper">
   <video id="intro-video" autoplay muted playsinline>
     <source src="https://pixabay.com/videos/download/video-9005_medium.mp4" type="video/mp4">
@@ -590,12 +573,12 @@
   <div id="intro-text">
     حین اجرای ویدیو...
     <br>به وبسایت مطهره مجدزاده خوش آمدید
-    <span>استودیو معماری پارامتریک · کرمان · پروژه‌های خاص</span>
+    <span>طراحی فضاهای خاص، متفاوت و چشم‌گیر</span>
     <button id="intro-enter">ورود به وبسایت</button>
   </div>
 </div>
 
-<!-- Background Video -->
+<!-- Background video -->
 <div class="bg-video-wrapper">
   <video class="bg-video" autoplay muted loop playsinline>
     <source src="https://pixabay.com/videos/download/video-296958_medium.mp4" type="video/mp4">
@@ -608,23 +591,23 @@
     <div class="brand">
       <div class="brand-logo">م</div>
       <div class="brand-text">
-        <strong id="brand-name">مطهره مجدزاده</strong>
-        <span id="brand-tagline">استودیو معماری پارامتریک · کرمان</span>
+        <strong>مطهره مجدزاده</strong>
+        <span>طراحی فضاهای خاص و متفاوت</span>
       </div>
     </div>
     <nav>
       <ul id="nav-links">
-        <li><a href="#hero" data-i18n="nav_home">خانه</a></li>
-        <li><a href="#about" data-i18n="nav_about">درباره</a></li>
-        <li><a href="#services" data-i18n="nav_services">خدمات</a></li>
-        <li><a href="#portfolio" data-i18n="nav_portfolio">نمونه‌کارها</a></li>
-        <li><a href="#contact" data-i18n="nav_contact">تماس</a></li>
+        <li><a href="#hero">خانه</a></li>
+        <li><a href="#about">درباره</a></li>
+        <li><a href="#services">خدمات</a></li>
+        <li><a href="#portfolio">نمونه‌کارها</a></li>
+        <li><a href="#videos">گالری ویدیو</a></li>
+        <li><a href="#contact">تماس</a></li>
       </ul>
     </nav>
     <div class="nav-right">
-      <button class="lang-toggle" id="lang-toggle">FA / EN</button>
-      <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="nav_cta">
-        رزرو جلسه
+      <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        درخواست همکاری
       </button>
       <div class="burger" id="burger">
         <span></span><span></span><span></span>
@@ -639,37 +622,37 @@
     <div>
       <div class="hero-kicker">
         <span class="dot"></span>
-        <span id="hero-kicker">معماری پارامتریک · کرمان · پروژه‌های خاص</span>
+        <span>طراحی معماری، فضاهای خاص، پروژه‌های متفاوت</span>
       </div>
-      <h1 class="hero-title" id="hero-title">
-        فرم‌های منحنی و سه‌بعدی
-        <br><span>در گفت‌وگو با نور و اقلیم کرمان</span>
+      <h1 class="hero-title">
+        طراحی فضاهایی که
+        <br><span>در ذهن می‌مانند، نه فقط در عکس</span>
       </h1>
-      <p class="hero-subtitle" id="hero-subtitle">
-        مطهره مجدزاده، دکترای معماری، با ترکیب فرم‌های پارامتریک جهانی و اقلیم و بافت کرمان،
-        فضاهایی خلق می‌کند که هم جسور و معاصرند و هم ریشه‌دار و قابل‌زیستن؛ از ویلاهای خاص
-        تا ساختمان‌های شاخص شهری.
+      <p class="hero-subtitle">
+        این وبسایت برای معرفی کارها، سلیقه و نگاه طراحی مطهره مجدزاده ساخته شده؛
+        تمرکز روی فضاهایی که هم از نظر فرم و تصویر جذاب‌اند، هم از نظر استفاده‌ی روزمره
+        قابل‌زندگی و کاربردی. از خانه‌ها و ویلاهای شخصی تا فضاهای عمومی و داخلی.
       </p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})" id="hero-btn-primary">
-          مشاهده پروژه‌ها
+        <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+          مشاهده نمونه‌کارها
         </button>
-        <button class="btn-ghost" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})" id="hero-btn-ghost">
-          آشنایی با رویکرد طراحی
+        <button class="btn-ghost" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+          آشنایی بیشتر
         </button>
       </div>
       <div class="hero-meta">
         <div>
-          <strong id="hero-meta-1-title">+۱۰ سال</strong>
-          <span id="hero-meta-1-text">تجربه طراحی و پژوهش معماری</span>
+          <strong>تمرکز روی جزئیات</strong>
+          <span>نور، سایه، مسیر حرکت، دیدها و قاب‌ها</span>
         </div>
         <div>
-          <strong id="hero-meta-2-title">کرمان</strong>
-          <span id="hero-meta-2-text">تمرکز بر اقلیم گرم و خشک و نور شدید</span>
+          <strong>پروژه‌های خاص</strong>
+          <span>برای کسانی که دنبال کار معمولی نیستند</span>
         </div>
         <div>
-          <strong id="hero-meta-3-title">پارامتریک</strong>
-          <span id="hero-meta-3-text">فرم‌های منحنی، پوسته‌های سه‌بعدی، فضاهای مفهومی</span>
+          <strong>نگاه شخصی</strong>
+          <span>هر پروژه با توجه به آدم‌ها و موقعیتش</span>
         </div>
       </div>
     </div>
@@ -681,8 +664,8 @@
             <source src="https://pixabay.com/videos/download/video-70969_medium.mp4" type="video/mp4">
           </video>
           <div class="hero-media-caption">
-            <strong id="hero-media-title">پوسته‌ی منحنی نور</strong>
-            <span id="hero-media-text">پروژه‌ی مفهومی با الهام از نور کرمان و فرم‌های سیال پارامتریک.</span>
+            <strong>فضای پویا و زنده</strong>
+            <span>ترکیب حرکت، نور و فرم برای ساختن فضاهایی که فقط یک تصویر ثابت نیستند.</span>
           </div>
         </div>
       </div>
@@ -691,22 +674,22 @@
 
   <!-- About -->
   <section id="about">
-    <h2 class="section-title" id="about-title">درباره‌ی مطهره مجدزاده</h2>
-    <p class="section-subtitle" id="about-subtitle">
-      دکترای معماری · تمرکز بر فرم‌های پارامتریک و اقلیم کرمان
+    <h2 class="section-title">درباره‌ی مطهره مجدزاده</h2>
+    <p class="section-subtitle">
+      نگاه شخصی به طراحی فضا، با تمرکز روی تجربه‌ی واقعی زندگی در آن فضا.
     </p>
 
     <div class="about-grid">
       <div>
-        <p class="about-text" id="about-text-1">
-          مطهره مجدزاده، معمار و پژوهشگری است که معماری را ترکیبی از فرم‌های جسور، نور کنترل‌شده
-          و اقلیم واقعی می‌بیند. او با استفاده از رویکردهای پارامتریک، فرم‌های منحنی و سه‌بعدی را
-          با نور شدید، سایه‌بان‌های عمیق و بافت کرمان ترکیب می‌کند.
+        <p class="about-text">
+          در این وبسایت، هدف فقط نمایش چند تصویر نیست؛ هدف این است که حال‌وهوای فضاهایی که طراحی می‌شوند
+          منتقل شود. فضاهایی که در آن‌ها نور، مسیر حرکت، دیدها، قاب‌ها، ارتفاع‌ها و جزئیات کوچک کنار هم
+          قرار می‌گیرند تا یک تجربه‌ی کامل بسازند.
         </p>
-        <p class="about-text" style="margin-top:10px;" id="about-text-2">
-          نتیجه، فضاهایی است که می‌توانند در سطح جهانی رقابت کنند و در عین حال با خاک، نور و فرهنگ
-          کرمان در ارتباط باشند؛ فضاهایی که هم برای زندگی روزمره مناسب‌اند و هم برای دیده شدن در
-          سطح بین‌المللی.
+        <p class="about-text" style="margin-top:10px;">
+          تمرکز روی پروژه‌هایی است که قرار است متفاوت باشند؛ چه یک خانه‌ی شخصی، چه یک فضای داخلی،
+          چه یک مجموعه‌ی کوچک. پروژه‌هایی که صاحب‌کار برایشان وقت و فکر می‌گذارد و انتظار دارد نتیجه،
+          چیزی فراتر از یک کار تکراری و معمولی باشد.
         </p>
       </div>
       <div class="about-card">
@@ -716,8 +699,8 @@
           </video>
         </div>
         <p style="font-size:11px;color:var(--muted);margin-top:8px;display:flex;justify-content:space-between;">
-          <span><strong style="color:var(--accent2);" id="about-name">مطهره مجدزاده</strong> · <span id="about-role">دکترای معماری · معمار ارشد</span></span>
-          <span id="about-location">کرمان · پروژه‌های خاص</span>
+          <span><strong style="color:var(--accent2);">مطهره مجدزاده</strong> · طراح فضا و معماری</span>
+          <span>پروژه‌های خاص و انتخابی</span>
         </p>
       </div>
     </div>
@@ -725,28 +708,31 @@
 
   <!-- Services -->
   <section id="services">
-    <h2 class="section-title" id="services-title">خدمات طراحی و مشاوره</h2>
-    <p class="section-subtitle" id="services-subtitle">
-      از ایده تا اجرا؛ برای کارفرمایانی که به دنبال پروژه‌های خاص، متمایز و سطح جهانی هستند.
+    <h2 class="section-title">حوزه‌های کاری و خدمات</h2>
+    <p class="section-subtitle">
+      از ایده و کانسپت اولیه تا طراحی کامل و همراهی در روند اجرا.
     </p>
 
     <div class="services-grid">
       <div class="service-card">
-        <h3 id="service-1-title">طراحی ویلا و مسکونی خاص</h3>
-        <p id="service-1-text">
-          طراحی ویلاها و فضاهای مسکونی با فرم‌های منحنی، حیاط‌های معاصر و نور کنترل‌شده، متناسب با اقلیم کرمان.
+        <h3>خانه‌ها و ویلاهای شخصی</h3>
+        <p>
+          طراحی فضاهای زندگی که هم از نظر تصویر و فرم جذاب باشند، هم از نظر استفاده‌ی روزمره
+          راحت، منطقی و قابل‌زندگی. توجه به نور، حریم، دید، حیاط، تراس و فضاهای نیمه‌باز.
         </p>
       </div>
       <div class="service-card">
-        <h3 id="service-2-title">ساختمان‌های اداری و تجاری شاخص</h3>
-        <p id="service-2-text">
-          خلق نماها و فضاهای داخلی متمایز برای ساختمان‌های اداری، تجاری و گالری‌ها با رویکرد پارامتریک.
+        <h3>فضاهای داخلی و بازسازی</h3>
+        <p>
+          طراحی داخلی خانه، دفتر، کافه، گالری و فضاهای کوچک و متوسط؛ با تمرکز روی متریال،
+          نورپردازی، مبلمان و جزئیات ریز که حال فضا را عوض می‌کنند.
         </p>
       </div>
       <div class="service-card">
-        <h3 id="service-3-title">مشاوره استراتژیک طراحی</h3>
-        <p id="service-3-text">
-          همراهی در تعریف کانسپت، هویت فضایی و استراتژی نور و سایه برای پروژه‌هایی که می‌خواهند دیده شوند.
+        <h3>مشاوره طراحی و ایده‌پردازی</h3>
+        <p>
+          کمک در انتخاب مسیر طراحی، بررسی گزینه‌ها، اصلاح طرح‌های موجود و پیشنهاد راه‌حل‌هایی
+          که پروژه را از حالت معمولی خارج کند و به سطح بالاتری ببرد.
         </p>
       </div>
     </div>
@@ -754,9 +740,9 @@
 
   <!-- Portfolio -->
   <section id="portfolio">
-    <h2 class="section-title" id="portfolio-title">نمونه‌کارها و فضاهای مفهومی</h2>
-    <p class="section-subtitle" id="portfolio-subtitle">
-      ترکیبی از پروژه‌های واقعی، رندرهای پارامتریک و فضاهای الهام‌گرفته از اقلیم کرمان.
+    <h2 class="section-title">نمونه‌کارها و فضاهای پیشنهادی</h2>
+    <p class="section-subtitle">
+      ترکیبی از ایده‌ها، فضاهای مفهومی و حال‌وهوای پروژه‌هایی که می‌توانند ساخته شوند.
     </p>
 
     <div class="portfolio-grid">
@@ -767,8 +753,8 @@
           </video>
         </div>
         <div class="portfolio-caption">
-          <strong id="portfolio-1-title">ویلا در شیب نور</strong>
-          <span id="portfolio-1-text">ترکیب حجم‌های ساده با پوسته‌های منحنی و سایه‌بان‌های عمیق.</span>
+          <strong>خانه با خطوط نرم</strong>
+          <span>ترکیب حجم‌های ساده با جزئیات نرم و منحنی در فضاهای اصلی.</span>
         </div>
       </div>
 
@@ -779,8 +765,8 @@
           </video>
         </div>
         <div class="portfolio-caption">
-          <strong id="portfolio-2-title">پوسته‌ی شهری پارامتریک</strong>
-          <span id="portfolio-2-text">فرم سیال با الهام از جریان باد و نور کرمان.</span>
+          <strong>نمای پویا و زنده</strong>
+          <span>حرکت نور و سایه روی سطح، در طول روز و شب، بدون شلوغی بی‌دلیل.</span>
         </div>
       </div>
 
@@ -791,8 +777,8 @@
           </video>
         </div>
         <div class="portfolio-caption">
-          <strong id="portfolio-3-title">فضای داخلی سیال</strong>
-          <span id="portfolio-3-text">خطوط نرم، نور غیرمستقیم و متریال گرم برای فضاهای داخلی.</span>
+          <strong>فضای داخلی با عمق</strong>
+          <span>استفاده از اختلاف ارتفاع، نور غیرمستقیم و متریال گرم برای ساختن عمق فضایی.</span>
         </div>
       </div>
 
@@ -803,8 +789,8 @@
           </video>
         </div>
         <div class="portfolio-caption">
-          <strong id="portfolio-4-title">گالری نور و سایه</strong>
-          <span id="portfolio-4-text">فضایی مفهومی برای نمایش هنر، نور و حرکت.</span>
+          <strong>گالری و فضای نمایش</strong>
+          <span>فضایی برای نمایش آثار، با مسیر حرکت مشخص و قاب‌های دید کنترل‌شده.</span>
         </div>
       </div>
 
@@ -815,8 +801,8 @@
           </video>
         </div>
         <div class="portfolio-caption">
-          <strong id="portfolio-5-title">پوسته‌ی چندلایه</strong>
-          <span id="portfolio-5-text">ترکیب لایه‌های نیمه‌شفاف برای کنترل نور و دید.</span>
+          <strong>پوسته‌ی چندلایه</strong>
+          <span>لایه‌های نیمه‌شفاف برای کنترل نور، دید و حریم، بدون بستن کامل فضا.</span>
         </div>
       </div>
 
@@ -827,89 +813,124 @@
           </video>
         </div>
         <div class="portfolio-caption">
-          <strong id="portfolio-6-title">فرم‌های آینده‌گرا</strong>
-          <span id="portfolio-6-text">فضاهای مفهومی برای پروژه‌های بین‌المللی و مسابقات معماری.</span>
+          <strong>فضاهای آینده‌نگر</strong>
+          <span>ایده‌هایی برای پروژه‌هایی که قرار است متفاوت و جسور باشند.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <h2 class="section-title" id="testimonials-title">نظر کارفرمایان</h2>
-    <p class="section-subtitle" id="testimonials-subtitle">
-      بخشی از بازخورد کسانی که با این استودیو کار کرده‌اند.
+  <!-- Extra video gallery (all videos again, شلوغ و پرجزییات) -->
+  <section id="videos">
+    <h2 class="section-title">گالری ویدیو و حال‌وهوای فضا</h2>
+    <p class="section-subtitle">
+      مجموعه‌ای از ویدیوها برای نشان دادن حس حرکت، نور، فرم و فضا؛ همه قابل استفاده به عنوان الهام برای پروژه‌های واقعی.
     </p>
 
-    <div class="testimonials">
-      <div class="testimonial">
-        <strong id="test-1-name">کارفرمای ویلا – کرمان</strong>
-        <span id="test-1-text">
-          «ترکیب فرم‌های منحنی با حیاط و نور کرمان، ویلای ما را به فضایی تبدیل کرد که هم برای زندگی روزمره عالی است و هم برای مهمان‌ها شگفت‌انگیز.»
-        </span>
+    <div class="video-section-grid">
+      <div class="video-card">
+        <video autoplay muted loop playsinline>
+          <source src="https://pixabay.com/videos/download/video-70969_medium.mp4" type="video/mp4">
+        </video>
+        <div>حرکت نرم و پیوسته، مناسب فضاهایی که قرار است آرام ولی زنده باشند.</div>
       </div>
-      <div class="testimonial">
-        <strong id="test-2-name">کارفرمای اداری – تهران</strong>
-        <span id="test-2-text">
-          «نمای پارامتریک طراحی‌شده، ساختمان ما را در خیابان اصلی شهر کاملاً متمایز کرده؛ هم از نظر زیبایی و هم از نظر عملکرد.»
-        </span>
+      <div class="video-card">
+        <video autoplay muted loop playsinline>
+          <source src="https://pixabay.com/videos/download/video-70875_medium.mp4" type="video/mp4">
+        </video>
+        <div>ترکیب خطوط و نور، مناسب فضاهای داخلی مدرن و مینیمال با جزئیات قوی.</div>
       </div>
-      <div class="testimonial">
-        <strong id="test-3-name">کارفرمای گالری – شیراز</strong>
-        <span id="test-3-text">
-          «نور، سایه و مسیر حرکت در گالری به‌گونه‌ای طراحی شده که خود فضا تبدیل به بخشی از تجربه‌ی هنری شده است.»
-        </span>
+      <div class="video-card">
+        <video autoplay muted loop playsinline>
+          <source src="https://pixabay.com/videos/download/video-73469_medium.mp4" type="video/mp4">
+        </video>
+        <div>حس عمق و لایه‌لایه بودن، مناسب فضاهایی با دیدهای متنوع و قاب‌بندی شده.</div>
+      </div>
+      <div class="video-card">
+        <video autoplay muted loop playsinline>
+          <source src="https://pixabay.com/videos/download/video-127983_medium.mp4" type="video/mp4">
+        </video>
+        <div>سطوح متحرک و پویا، مناسب نماها و فضاهایی که قرار است در ذهن بمانند.</div>
+      </div>
+      <div class="video-card">
+        <video autoplay muted loop playsinline>
+          <source src="https://pixabay.com/videos/download/video-176908_medium.mp4" type="video/mp4">
+        </video>
+        <div>فضای داخلی با نور کنترل‌شده، مناسب خانه‌ها و فضاهای خصوصی.</div>
+      </div>
+      <div class="video-card">
+        <video autoplay muted loop playsinline>
+          <source src="https://pixabay.com/videos/download/video-206692_medium.mp4" type="video/mp4">
+        </video>
+        <div>فضای نمایش و گالری، مناسب پروژه‌هایی که با هنر و نمایش در ارتباط‌اند.</div>
+      </div>
+      <div class="video-card">
+        <video autoplay muted loop playsinline>
+          <source src="https://pixabay.com/videos/download/video-51077_medium.mp4" type="video/mp4">
+        </video>
+        <div>لایه‌های نیمه‌شفاف، مناسب فضاهایی که نیاز به حریم و در عین حال ارتباط دارند.</div>
+      </div>
+      <div class="video-card">
+        <video autoplay muted loop playsinline>
+          <source src="https://pixabay.com/videos/download/video-143861_medium.mp4" type="video/mp4">
+        </video>
+        <div>فرم‌های آینده‌نگر، مناسب پروژه‌های خاص، مسابقات و ایده‌های جسورانه.</div>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
   <section id="contact">
-    <h2 class="section-title" id="contact-title">تماس و همکاری</h2>
-    <p class="section-subtitle" id="contact-subtitle">
-      اگر پروژه‌ای خاص و متفاوت در ذهن دارید، می‌توانیم از یک گفت‌وگوی ساده شروع کنیم.
+    <h2 class="section-title">تماس و شروع همکاری</h2>
+    <p class="section-subtitle">
+      اگر پروژه‌ای در ذهن دارید و دوست دارید درباره‌اش جدی صحبت شود، می‌توانید از همین‌جا شروع کنید.
     </p>
 
     <div class="contact-grid">
       <div class="contact-card">
-        <form onsubmit="event.preventDefault();alert(currentLang==='fa'?'پیام شما ثبت شد (سمت سرور باید پیاده‌سازی شود).':'Your message has been recorded (server-side needed).');">
+        <form onsubmit="event.preventDefault();alert('پیام شما ثبت شد (در نسخه‌ی واقعی، این بخش باید به سرور متصل شود).');">
           <div class="form-row">
             <div>
-              <label for="name" id="label-name">نام و نام خانوادگی</label>
+              <label for="name">نام و نام خانوادگی</label>
               <input id="name" type="text" placeholder="مثلاً: علی رضایی">
             </div>
             <div>
-              <label for="email" id="label-email">ایمیل</label>
+              <label for="email">ایمیل</label>
               <input id="email" type="email" placeholder="example@mail.com">
             </div>
           </div>
           <div class="form-row">
             <div>
-              <label for="phone" id="label-phone">شماره تماس</label>
+              <label for="phone">شماره تماس</label>
               <input id="phone" type="tel" placeholder="+98 ...">
             </div>
             <div>
-              <label for="project-type" id="label-project">نوع پروژه</label>
-              <input id="project-type" type="text" placeholder="ویلا، اداری، گالری، کافه...">
+              <label for="project-type">نوع پروژه</label>
+              <input id="project-type" type="text" placeholder="خانه، ویلا، داخلی، گالری، کافه...">
             </div>
           </div>
           <div>
-            <label for="message" id="label-message">توضیحات پروژه</label>
+            <label for="message">توضیحات پروژه</label>
             <textarea id="message" placeholder="مختصراً درباره‌ی پروژه، مکان، متراژ و انتظارات خود بنویسید..."></textarea>
           </div>
-          <button class="btn-primary" type="submit" id="contact-btn">ارسال درخواست</button>
+          <button class="btn-primary" type="submit">ارسال درخواست</button>
         </form>
       </div>
       <div class="contact-info">
         <p>
-          <strong id="contact-studio-name">استودیو معماری مطهره مجدزاده</strong><br>
-          <span id="contact-studio-desc">کرمان · پروژه‌های خاص و سطح بالا</span>
+          <strong>مطهره مجدزاده</strong><br>
+          <span>طراحی فضاهای خاص، انتخابی و متفاوت</span>
         </p>
         <p style="margin-top:10px;">
-          <span id="contact-email-label">ایمیل:</span>
-          <strong> info@majdzadeh-architecture.com</strong><br>
-          <span id="contact-phone-label">تلفن:</span>
+          ایمیل:
+          <strong> info@example.com</strong><br>
+          تلفن:
           <strong> 09XX XXX XXXX</strong>
+        </p>
+
+        <p style="margin-top:10px;">
+          می‌توانید برای هماهنگی اولیه، ارسال پلان، یا توضیح پروژه، از طریق ایمیل یا پیام، ارتباط بگیرید.
+          بعد از بررسی، امکان برگزاری جلسه‌ی آنلاین یا حضوری هم وجود دارد.
         </p>
 
         <div class="social-row">
@@ -944,7 +965,7 @@
 </main>
 
 <footer>
-  © <span id="year"></span> <span>مطهره مجدزاده</span> · فرم‌های سه‌بعدی، نور و اقلیم کرمان.
+  © <span id="year"></span> <span>مطهره مجدزاده</span> · طراحی فضاهای خاص و متفاوت.
 </footer>
 
 <script>
@@ -972,248 +993,6 @@
 
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Simple bilingual system
-  let currentLang = 'fa';
-  const langToggle = document.getElementById('lang-toggle');
-
-  const texts = {
-    fa:{
-      brandName:'مطهره مجدزاده',
-      brandTag:'استودیو معماری پارامتریک · کرمان',
-      nav_home:'خانه',
-      nav_about:'درباره',
-      nav_services:'خدمات',
-      nav_portfolio:'نمونه‌کارها',
-      nav_contact:'تماس',
-      nav_cta:'رزرو جلسه',
-      heroKicker:'معماری پارامتریک · کرمان · پروژه‌های خاص',
-      heroTitle:'فرم‌های منحنی و سه‌بعدی\nدر گفت‌وگو با نور و اقلیم کرمان',
-      heroSubtitle:'مطهره مجدزاده، دکترای معماری، با ترکیب فرم‌های پارامتریک جهانی و اقلیم و بافت کرمان، فضاهایی خلق می‌کند که هم جسور و معاصرند و هم ریشه‌دار و قابل‌زیستن؛ از ویلاهای خاص تا ساختمان‌های شاخص شهری.',
-      heroBtnPrimary:'مشاهده پروژه‌ها',
-      heroBtnGhost:'آشنایی با رویکرد طراحی',
-      heroMeta1Title:'+۱۰ سال',
-      heroMeta1Text:'تجربه طراحی و پژوهش معماری',
-      heroMeta2Title:'کرمان',
-      heroMeta2Text:'تمرکز بر اقلیم گرم و خشک و نور شدید',
-      heroMeta3Title:'پارامتریک',
-      heroMeta3Text:'فرم‌های منحنی، پوسته‌های سه‌بعدی، فضاهای مفهومی',
-      heroMediaTitle:'پوسته‌ی منحنی نور',
-      heroMediaText:'پروژه‌ی مفهومی با الهام از نور کرمان و فرم‌های سیال پارامتریک.',
-      aboutTitle:'درباره‌ی مطهره مجدزاده',
-      aboutSubtitle:'دکترای معماری · تمرکز بر فرم‌های پارامتریک و اقلیم کرمان',
-      aboutText1:'مطهره مجدزاده، معمار و پژوهشگری است که معماری را ترکیبی از فرم‌های جسور، نور کنترل‌شده و اقلیم واقعی می‌بیند. او با استفاده از رویکردهای پارامتریک، فرم‌های منحنی و سه‌بعدی را با نور شدید، سایه‌بان‌های عمیق و بافت کرمان ترکیب می‌کند.',
-      aboutText2:'نتیجه، فضاهایی است که می‌توانند در سطح جهانی رقابت کنند و در عین حال با خاک، نور و فرهنگ کرمان در ارتباط باشند؛ فضاهایی که هم برای زندگی روزمره مناسب‌اند و هم برای دیده شدن در سطح بین‌المللی.',
-      aboutName:'مطهره مجدزاده',
-      aboutRole:'دکترای معماری · معمار ارشد',
-      aboutLocation:'کرمان · پروژه‌های خاص',
-      servicesTitle:'خدمات طراحی و مشاوره',
-      servicesSubtitle:'از ایده تا اجرا؛ برای کارفرمایانی که به دنبال پروژه‌های خاص، متمایز و سطح جهانی هستند.',
-      service1Title:'طراحی ویلا و مسکونی خاص',
-      service1Text:'طراحی ویلاها و فضاهای مسکونی با فرم‌های منحنی، حیاط‌های معاصر و نور کنترل‌شده، متناسب با اقلیم کرمان.',
-      service2Title:'ساختمان‌های اداری و تجاری شاخص',
-      service2Text:'خلق نماها و فضاهای داخلی متمایز برای ساختمان‌های اداری، تجاری و گالری‌ها با رویکرد پارامتریک.',
-      service3Title:'مشاوره استراتژیک طراحی',
-      service3Text:'همراهی در تعریف کانسپت، هویت فضایی و استراتژی نور و سایه برای پروژه‌هایی که می‌خواهند دیده شوند.',
-      portfolioTitle:'نمونه‌کارها و فضاهای مفهومی',
-      portfolioSubtitle:'ترکیبی از پروژه‌های واقعی، رندرهای پارامتریک و فضاهای الهام‌گرفته از اقلیم کرمان.',
-      portfolio1Title:'ویلا در شیب نور',
-      portfolio1Text:'ترکیب حجم‌های ساده با پوسته‌های منحنی و سایه‌بان‌های عمیق.',
-      portfolio2Title:'پوسته‌ی شهری پارامتریک',
-      portfolio2Text:'فرم سیال با الهام از جریان باد و نور کرمان.',
-      portfolio3Title:'فضای داخلی سیال',
-      portfolio3Text:'خطوط نرم، نور غیرمستقیم و متریال گرم برای فضاهای داخلی.',
-      portfolio4Title:'گالری نور و سایه',
-      portfolio4Text:'فضایی مفهومی برای نمایش هنر، نور و حرکت.',
-      portfolio5Title:'پوسته‌ی چندلایه',
-      portfolio5Text:'ترکیب لایه‌های نیمه‌شفاف برای کنترل نور و دید.',
-      portfolio6Title:'فرم‌های آینده‌گرا',
-      portfolio6Text:'فضاهای مفهومی برای پروژه‌های بین‌المللی و مسابقات معماری.',
-      testimonialsTitle:'نظر کارفرمایان',
-      testimonialsSubtitle:'بخشی از بازخورد کسانی که با این استودیو کار کرده‌اند.',
-      test1Name:'کارفرمای ویلا – کرمان',
-      test1Text:'«ترکیب فرم‌های منحنی با حیاط و نور کرمان، ویلای ما را به فضایی تبدیل کرد که هم برای زندگی روزمره عالی است و هم برای مهمان‌ها شگفت‌انگیز.»',
-      test2Name:'کارفرمای اداری – تهران',
-      test2Text:'«نمای پارامتریک طراحی‌شده، ساختمان ما را در خیابان اصلی شهر کاملاً متمایز کرده؛ هم از نظر زیبایی و هم از نظر عملکرد.»',
-      test3Name:'کارفرمای گالری – شیراز',
-      test3Text:'«نور، سایه و مسیر حرکت در گالری به‌گونه‌ای طراحی شده که خود فضا تبدیل به بخشی از تجربه‌ی هنری شده است.»',
-      contactTitle:'تماس و همکاری',
-      contactSubtitle:'اگر پروژه‌ای خاص و متفاوت در ذهن دارید، می‌توانیم از یک گفت‌وگوی ساده شروع کنیم.',
-      labelName:'نام و نام خانوادگی',
-      labelEmail:'ایمیل',
-      labelPhone:'شماره تماس',
-      labelProject:'نوع پروژه',
-      labelMessage:'توضیحات پروژه',
-      contactBtn:'ارسال درخواست',
-      contactStudioName:'استودیو معماری مطهره مجدزاده',
-      contactStudioDesc:'کرمان · پروژه‌های خاص و سطح بالا',
-      contactEmailLabel:'ایمیل:',
-      contactPhoneLabel:'تلفن:'
-    },
-    en:{
-      brandName:'Motehareh Majdzadeh',
-      brandTag:'Parametric Architecture Studio · Kerman, Iran',
-      nav_home:'Home',
-      nav_about:'About',
-      nav_services:'Services',
-      nav_portfolio:'Portfolio',
-      nav_contact:'Contact',
-      nav_cta:'Book a meeting',
-      heroKicker:'Parametric Architecture · Kerman · Signature Projects',
-      heroTitle:'Curved, three-dimensional forms\nin dialogue with light and Kerman’s climate',
-      heroSubtitle:'Dr. Motehareh Majdzadeh combines global parametric design with the climate and texture of Kerman to create spaces that are bold, contemporary, and deeply livable—from signature villas to landmark urban buildings.',
-      heroBtnPrimary:'View projects',
-      heroBtnGhost:'Design approach',
-      heroMeta1Title:'+10 years',
-      heroMeta1Text:'Experience in design and architectural research',
-      heroMeta2Title:'Kerman',
-      heroMeta2Text:'Focus on hot-dry climate and intense light',
-      heroMeta3Title:'Parametric',
-      heroMeta3Text:'Curved forms, 3D envelopes, conceptual spaces',
-      heroMediaTitle:'Curved Light Shell',
-      heroMediaText:'Conceptual project inspired by Kerman’s light and fluid parametric forms.',
-      aboutTitle:'About Motehareh Majdzadeh',
-      aboutSubtitle:'PhD in Architecture · Parametric forms & Kerman climate',
-      aboutText1:'Motehareh Majdzadeh is an architect and researcher who sees architecture as a synthesis of bold forms, controlled light, and real climate. Using parametric approaches, she merges curved, three-dimensional geometries with strong light, deep shading, and the fabric of Kerman.',
-      aboutText2:'The result is spaces that can compete globally while remaining rooted in the soil, light, and culture of Kerman—spaces that work for everyday life and for international visibility.',
-      aboutName:'Motehareh Majdzadeh',
-      aboutRole:'PhD in Architecture · Lead Architect',
-      aboutLocation:'Kerman · Signature projects',
-      servicesTitle:'Design & Consulting Services',
-      servicesSubtitle:'From concept to execution—for clients seeking distinctive, world-class projects.',
-      service1Title:'Signature villas & residential',
-      service1Text:'Design of villas and residential spaces with curved forms, contemporary courtyards, and controlled light tailored to Kerman’s climate.',
-      service2Title:'Iconic office & commercial buildings',
-      service2Text:'Distinctive façades and interiors for office, commercial, and gallery buildings using parametric design.',
-      service3Title:'Strategic design consulting',
-      service3Text:'Support in defining concept, spatial identity, and light–shadow strategy for projects that aim to stand out.',
-      portfolioTitle:'Portfolio & Concept Spaces',
-      portfolioSubtitle:'A mix of built work, parametric renders, and spaces inspired by Kerman’s climate.',
-      portfolio1Title:'Villa on the Slope of Light',
-      portfolio1Text:'Simple volumes combined with curved shells and deep shading.',
-      portfolio2Title:'Urban Parametric Shell',
-      portfolio2Text:'Fluid form inspired by wind flow and Kerman’s light.',
-      portfolio3Title:'Fluid Interior Space',
-      portfolio3Text:'Soft lines, indirect light, and warm materials for interior atmospheres.',
-      portfolio4Title:'Gallery of Light & Shadow',
-      portfolio4Text:'Conceptual space for exhibiting art, light, and movement.',
-      portfolio5Title:'Layered Envelope',
-      portfolio5Text:'Semi-transparent layers for controlling light and views.',
-      portfolio6Title:'Futuristic Forms',
-      portfolio6Text:'Conceptual spaces for international competitions and visionary projects.',
-      testimonialsTitle:'Client Feedback',
-      testimonialsSubtitle:'A selection of comments from people who have worked with this studio.',
-      test1Name:'Villa Client – Kerman',
-      test1Text:'“The combination of curved forms with courtyard and Kerman’s light turned our villa into a space that is perfect for everyday life and stunning for guests.”',
-      test2Name:'Office Client – Tehran',
-      test2Text:'“The parametric façade has made our building stand out completely on the main street—both aesthetically and functionally.”',
-      test3Name:'Gallery Client – Shiraz',
-      test3Text:'“Light, shadow, and movement through the gallery are designed so that the space itself becomes part of the artistic experience.”',
-      contactTitle:'Contact & Collaboration',
-      contactSubtitle:'If you have a distinctive project in mind, we can start with a simple conversation.',
-      labelName:'Full name',
-      labelEmail:'Email',
-      labelPhone:'Phone number',
-      labelProject:'Project type',
-      labelMessage:'Project description',
-      contactBtn:'Send request',
-      contactStudioName:'Motehareh Majdzadeh Architecture Studio',
-      contactStudioDesc:'Kerman · High-end, signature projects',
-      contactEmailLabel:'Email:',
-      contactPhoneLabel:'Phone:'
-    }
-  };
-
-  function applyLang(lang){
-    currentLang = lang;
-    document.body.style.direction = lang==='fa' ? 'rtl' : 'ltr';
-
-    const t = texts[lang];
-    document.getElementById('brand-name').textContent = t.brandName;
-    document.getElementById('brand-tagline').textContent = t.brandTag;
-
-    const navMap = ['nav_home','nav_about','nav_services','nav_portfolio','nav_contact'];
-    const navEls = document.querySelectorAll('#nav-links a');
-    navEls.forEach((el,i)=>{el.textContent = t[navMap[i]];});
-
-    document.querySelector('[data-i18n="nav_cta"]').textContent = t.nav_cta;
-
-    document.getElementById('hero-kicker').textContent = t.heroKicker;
-    const heroTitle = t.heroTitle.split('\n');
-    document.getElementById('hero-title').innerHTML = heroTitle[0] + '<br><span>'+heroTitle[1]+'</span>';
-    document.getElementById('hero-subtitle').textContent = t.heroSubtitle;
-    document.getElementById('hero-btn-primary').textContent = t.heroBtnPrimary;
-    document.getElementById('hero-btn-ghost').textContent = t.heroBtnGhost;
-    document.getElementById('hero-meta-1-title').textContent = t.heroMeta1Title;
-    document.getElementById('hero-meta-1-text').textContent = t.heroMeta1Text;
-    document.getElementById('hero-meta-2-title').textContent = t.heroMeta2Title;
-    document.getElementById('hero-meta-2-text').textContent = t.heroMeta2Text;
-    document.getElementById('hero-meta-3-title').textContent = t.heroMeta3Title;
-    document.getElementById('hero-meta-3-text').textContent = t.heroMeta3Text;
-    document.getElementById('hero-media-title').textContent = t.heroMediaTitle;
-    document.getElementById('hero-media-text').textContent = t.heroMediaText;
-
-    document.getElementById('about-title').textContent = t.aboutTitle;
-    document.getElementById('about-subtitle').textContent = t.aboutSubtitle;
-    document.getElementById('about-text-1').textContent = t.aboutText1;
-    document.getElementById('about-text-2').textContent = t.aboutText2;
-    document.getElementById('about-name').textContent = t.aboutName;
-    document.getElementById('about-role').textContent = t.aboutRole;
-    document.getElementById('about-location').textContent = t.aboutLocation;
-
-    document.getElementById('services-title').textContent = t.servicesTitle;
-    document.getElementById('services-subtitle').textContent = t.servicesSubtitle;
-    document.getElementById('service-1-title').textContent = t.service1Title;
-    document.getElementById('service-1-text').textContent = t.service1Text;
-    document.getElementById('service-2-title').textContent = t.service2Title;
-    document.getElementById('service-2-text').textContent = t.service2Text;
-    document.getElementById('service-3-title').textContent = t.service3Title;
-    document.getElementById('service-3-text').textContent = t.service3Text;
-
-    document.getElementById('portfolio-title').textContent = t.portfolioTitle;
-    document.getElementById('portfolio-subtitle').textContent = t.portfolioSubtitle;
-    document.getElementById('portfolio-1-title').textContent = t.portfolio1Title;
-    document.getElementById('portfolio-1-text').textContent = t.portfolio1Text;
-    document.getElementById('portfolio-2-title').textContent = t.portfolio2Title;
-    document.getElementById('portfolio-2-text').textContent = t.portfolio2Text;
-    document.getElementById('portfolio-3-title').textContent = t.portfolio3Title;
-    document.getElementById('portfolio-3-text').textContent = t.portfolio3Text;
-    document.getElementById('portfolio-4-title').textContent = t.portfolio4Title;
-    document.getElementById('portfolio-4-text').textContent = t.portfolio4Text;
-    document.getElementById('portfolio-5-title').textContent = t.portfolio5Title;
-    document.getElementById('portfolio-5-text').textContent = t.portfolio5Text;
-    document.getElementById('portfolio-6-title').textContent = t.portfolio6Title;
-    document.getElementById('portfolio-6-text').textContent = t.portfolio6Text;
-
-    document.getElementById('testimonials-title').textContent = t.testimonialsTitle;
-    document.getElementById('testimonials-subtitle').textContent = t.testimonialsSubtitle;
-    document.getElementById('test-1-name').textContent = t.test1Name;
-    document.getElementById('test-1-text').textContent = t.test1Text;
-    document.getElementById('test-2-name').textContent = t.test2Name;
-    document.getElementById('test-2-text').textContent = t.test2Text;
-    document.getElementById('test-3-name').textContent = t.test3Name;
-    document.getElementById('test-3-text').textContent = t.test3Text;
-
-    document.getElementById('contact-title').textContent = t.contactTitle;
-    document.getElementById('contact-subtitle').textContent = t.contactSubtitle;
-    document.getElementById('label-name').textContent = t.labelName;
-    document.getElementById('label-email').textContent = t.labelEmail;
-    document.getElementById('label-phone').textContent = t.labelPhone;
-    document.getElementById('label-project').textContent = t.labelProject;
-    document.getElementById('label-message').textContent = t.labelMessage;
-    document.getElementById('contact-btn').textContent = t.contactBtn;
-    document.getElementById('contact-studio-name').textContent = t.contactStudioName;
-    document.getElementById('contact-studio-desc').textContent = t.contactStudioDesc;
-    document.getElementById('contact-email-label').textContent = t.contactEmailLabel;
-    document.getElementById('contact-phone-label').textContent = t.contactPhoneLabel;
-  }
-
-  langToggle.addEventListener('click',()=>{
-    applyLang(currentLang==='fa'?'en':'fa');
-  });
-
-  // default
-  applyLang('fa');
 </script>
 
 </body>
