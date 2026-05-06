@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مطهره مجدزاده | دفتر معماری و طراحی</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- فونت فارسی (مثلاً Vazirmatn) -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #050608;
+            --bg-card: #111319;
+            --accent: #f5b55f;
+            --accent-soft: rgba(245, 181, 95, 0.2);
+            --text-main: #f5f5f5;
+            --text-muted: #b3b3b3;
+            --border-soft: rgba(255,255,255,0.08);
+        }
+
+        body {
+            font-family: 'Vazirmatn', system-ui, sans-serif;
+            background: radial-gradient(circle at top, #1b1f2a 0, #050608 55%);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* اسکرول نرم */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* هدر ثابت */
+        header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(to left, rgba(5,6,8,0.96), rgba(5,6,8,0.75));
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--accent);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            font-size: 13px;
+        }
+
+        .brand-text strong {
+            font-size: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 18px;
+            font-size: 13px;
+        }
+
+        nav li a {
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        nav li a::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.25s ease;
+        }
+
+        nav li a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--accent);
+            font-size: 12px;
+            cursor: pointer;
+            background: linear-gradient(135deg, rgba(245,181,95,0.18), rgba(245,181,95,0.03));
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 18px rgba(245,181,95,0.35);
+            background: linear-gradient(135deg, rgba(245,181,95,0.3), rgba(245,181,95,0.08));
+        }
+
+        /* سکشن‌ها */
+        main {
+            margin-top: 72px;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            position: relative;
+        }
+
+        /* سکشن هِرو */
+        .hero {
+            min-height: calc(100vh - 72px);
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-left {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            background: rgba(0,0,0,0.35);
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .hero-kicker span.dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 12px rgba(245,181,95,0.8);
+        }
+
+        .hero-title {
+            font-size: 40px;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .hero-title span.highlight {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 520px;
+            line-height: 1.9;
+            margin-bottom: 26px;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 26px;
+        }
+
+        .hero-tag {
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            font-size: 11px;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(135deg, #f5b55f, #f58f3a);
+            color: #111;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 0 24px rgba(245,181,95,0.5);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 32px rgba(245,181,95,0.7);
+        }
+
+        .btn-ghost {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            background: transparent;
+            color: var(--text-main);
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.18);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hero-meta-item strong {
+            font-size: 13px;
+            color: var(--accent);
+        }
+
+        /* سمت راست هِرو */
+        .hero-right {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-card {
+            position: relative;
+            border-radius: 28px;
+            padding: 18px;
+            background: radial-gradient(circle at top, #262a36 0, #111319 55%);
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 10% 0, rgba(245,181,95,0.12), transparent 55%),
+                radial-gradient(circle at 90% 100%, rgba(245,181,95,0.18), transparent 55%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-card-title {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .hero-card-title strong {
+            display: block;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .hero-card-badge {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(245,181,95,0.6);
+            font-size: 11px;
+            color: var(--accent);
+            background: rgba(0,0,0,0.4);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 14px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            filter: saturate(1.1) contrast(1.05);
+            transform: scale(1.02);
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5,6,8,0.9), transparent 40%);
+        }
+
+        .hero-image-caption {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            left: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .hero-image-caption strong {
+            display: block;
+            font-size: 13px;
+            color: var(--text-main);
+        }
+
+        .hero-card-footer {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-stat {
+            padding: 10px;
+            border-radius: 14px;
+            background: rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,255,255,0.06);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-size: 15px;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        /* برگ‌ریزان */
+        .leaf {
+            position: fixed;
+            top: -40px;
+            width: 18px;
+            height: 18px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Orange_leaf_icon.svg/1024px-Orange_leaf_icon.svg.png');
+            background-size: cover;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 0;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translate3d(0, -40px, 0) rotateZ(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translate3d(-60px, 110vh, 0) rotateZ(260deg);
+                opacity: 0;
+            }
+        }
+
+        /* سکشن‌های عمومی */
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 26px;
+        }
+
+        /* درباره */
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 32px;
+        }
+
+        .about-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 2;
+        }
+
+        .about-highlight {
+            padding: 16px;
+            border-radius: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            font-size: 13px;
+            margin-top: 16px;
+        }
+
+        .about-highlight strong {
+            color: var(--accent);
+        }
+
+        .about-meta {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .about-meta-item {
+            padding: 10px 12px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-soft);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .about-meta-item strong {
+            display: block;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .about-photo-card {
+            border-radius: 22px;
+            background: radial-gradient(circle at top, #262a36 0, #111319 55%);
+            border: 1px solid var(--border-soft);
+            padding: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-photo-main {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 10px;
+        }
+
+        .about-photo-main img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+
+        .about-photo-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .about-photo-label strong {
+            color: var(--accent);
+        }
+
+        /* فلسفه طراحی */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 28px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .pill {
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .philosophy-card {
+            padding: 16px;
+            border-radius: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.9;
+        }
+
+        .philosophy-card strong {
+            color: var(--accent);
+        }
+
+        .philosophy-points {
+            margin-top: 14px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .philosophy-point {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .philosophy-point strong {
+            color: var(--text-main);
+        }
+
+        .philosophy-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .mini-card {
+            padding: 12px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-soft);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .mini-card strong {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        /* نمونه‌کارها */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #111319;
+            border: 1px solid var(--border-soft);
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+            border-color: rgba(245,181,95,0.6);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5,6,8,0.9), transparent 40%);
+        }
+
+        .portfolio-caption {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            left: 10px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .portfolio-caption strong {
+            display: block;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+
+        /* خدمات */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .service-card {
+            padding: 16px;
+            border-radius: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.9;
+        }
+
+        .service-card strong {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .service-tags {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .service-tag {
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            font-size: 11px;
+        }
+
+        /* فرآیند طراحی */
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .process-step {
+            padding: 14px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-soft);
+            font-size: 12px;
+            color: var(--text-muted);
+            position: relative;
+        }
+
+        .process-step-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 999px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .process-step strong {
+            display: block;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        /* نظرات */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .testimonial-card {
+            padding: 16px;
+            border-radius: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.9;
+        }
+
+        .testimonial-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .testimonial-name {
+            font-size: 13px;
+            color: var(--text-main);
+        }
+
+        .testimonial-role {
+            font-size: 11px;
+        }
+
+        .testimonial-rating {
+            font-size: 11px;
+            color: var(--accent);
+        }
+
+        /* تماس */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 28px;
+        }
+
+        .contact-card {
+            padding: 18px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+        }
+
+        .contact-card form {
+            display: grid;
+            gap: 12px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border-soft);
+            background: rgba(0,0,0,0.4);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 12px;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 2;
+        }
+
+        .contact-info strong {
+            color: var(--accent);
+        }
+
+        .social-row {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .social-pill {
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            font-size: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .social-pill span.icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-soft);
+        }
+
+        /* فوتر */
+        footer {
+            border-top: 1px solid var(--border-soft);
+            padding: 18px 24px 26px;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+            background: #050608;
+        }
+
+        footer span.highlight {
+            color: var(--accent);
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 960px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .hero-right {
+                order: -1;
+            }
+            .about-grid,
+            .philosophy-grid,
+            .contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .portfolio-grid,
+            .services-grid,
+            .process-timeline,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav ul {
+                display: none;
+            }
+            .hero-title {
+                font-size: 30px;
+            }
+            .portfolio-grid,
+            .services-grid,
+            .process-timeline,
+            .testimonials-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            section {
+                padding: 40px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <div class="brand">
+            <div class="brand-logo">م</div>
+            <div class="brand-text">
+                <strong>مطهره مجدزاده</strong>
+                <span>دکترای معماری | دفتر طراحی و ساخت</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#hero">خانه</a></li>
+                <li><a href="#about">درباره</a></li>
+                <li><a href="#portfolio">نمونه‌کارها</a></li>
+                <li><a href="#services">خدمات</a></li>
+                <li><a href="#process">فرآیند طراحی</a></li>
+                <li><a href="#contact">تماس</a></li>
+            </ul>
+        </nav>
+        <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            رزرو جلسه مشاوره
+        </button>
+    </div>
+</header>
+
+<main>
+    <!-- هِرو -->
+    <section id="hero" class="hero">
+        <div class="hero-left">
+            <div class="hero-kicker">
+                <span class="dot"></span>
+                <span>دفتر معماری و طراحی «برگ‌ریزان»</span>
+            </div>
+            <h1 class="hero-title">
+                معماری که<br>
+                <span class="highlight">روایت زندگی</span> را در جزئیات<br>
+                فضاها می‌نویسد.
+            </h1>
+            <p class="hero-subtitle">
+                مطهره مجدزاده، دکترای معماری، با رویکردی شاعرانه و در عین حال علمی، فضاهایی خلق می‌کند
+                که میان نور، ماده، بافت و خاطره، تعادلی عمیق برقرار می‌کنند؛ از ویلاهای معاصر تا فضاهای عمومی
+                شهری و پروژه‌های بازآفرینی بافت‌های قدیمی.
+            </p>
+
+            <div class="hero-tags">
+                <span class="hero-tag">طراحی معماری معاصر</span>
+                <span class="hero-tag">بازآفرینی بافت‌های شهری</span>
+                <span class="hero-tag">طراحی داخلی مفهومی</span>
+                <span class="hero-tag">نظارت و اجرای پروژه</span>
+            </div>
+
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+                    مشاهده نمونه‌کارها
+                    <span>↗</span>
+                </button>
+                <button class="btn-ghost" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+                    آشنایی با رویکرد طراحی
+                </button>
+            </div>
+
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <strong>+۱۰ سال</strong>
+                    <span>تجربه حرفه‌ای در طراحی و اجرا</span>
+                </div>
+                <div class="hero-meta-item">
+                    <strong>+۴۰ پروژه</strong>
+                    <span>مسکونی، اداری، فرهنگی و شهری</span>
+                </div>
+                <div class="hero-meta-item">
+                    <strong>+۸ جایزه</strong>
+                    <span>مسابقات و جشنواره‌های معماری</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="hero-card">
+                <div class="hero-card-header">
+                    <div class="hero-card-title">
+                        پروژه منتخب
+                        <strong>خانه‌ی نور و سایه</strong>
+                    </div>
+                    <div class="hero-card-badge">
+                        Residential Concept · 2025
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <!-- اینجا لینک یک عکس معماری مدرن بگذار -->
+                    <img class="hero-image" src="IMAGE_URL_HERE_1" alt="پروژه معماری مدرن">
+                    <div class="hero-image-overlay"></div>
+                    <div class="hero-image-caption">
+                        <div>
+                            <strong>تعادل میان شفافیت و حریم</strong>
+                            <span>طراحی ویلا با محوریت نور طبیعی و حیاط مرکزی</span>
+                        </div>
+                        <div>
+                            <span>مساحت: ۴۵۰ مترمربع</span><br>
+                            <span>مکان: دبی</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-card-footer">
+                    <div class="hero-stat">
+                        <strong>۳۲٪</strong>
+                        کاهش مصرف انرژی با استراتژی‌های غیرفعال
+                    </div>
+                    <div class="hero-stat">
+                        <strong>۴.۹/۵</strong>
+                        رضایت کارفرما از فرآیند طراحی و اجرا
+                    </div>
+                    <div class="hero-stat">
+                        <strong>۳</strong>
+                        جایزه در مسابقات معماری منطقه‌ای
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- درباره -->
+    <section id="about">
+        <h2 class="section-title">درباره‌ی مطهره مجدزاده</h2>
+        <p class="section-subtitle">
+            دکترای معماری | پژوهشگر، طراح و مدیر پروژه در حوزه‌ی فضاهای معاصر و بازآفرینی شهری
+        </p>
+
+        <div class="about-grid">
+            <div>
+                <p class="about-text">
+                    مطهره مجدزاده، معمار و پژوهشگری است که میان جهان نظری معماری و واقعیت ساخت‌وساز
+                    پل می‌زند. او با تکیه بر دانش آکادمیک، تجربه‌ی میدانی و حساسیت شاعرانه نسبت به
+                    جزئیات، پروژه‌هایی خلق می‌کند که نه فقط «ساختمان»، بلکه «تجربه‌ی زیستن» هستند.
+                </p>
+                <p class="about-text" style="margin-top:10px;">
+                    از طراحی ویلاهای مینیمال در بسترهای طبیعی تا فضاهای عمومی شهری و پروژه‌های
+                    بازآفرینی بافت‌های قدیمی، رویکرد او بر پایه‌ی گفت‌وگو با زمینه، نور، ماده و
+                    زندگی روزمره‌ی کاربران شکل می‌گیرد.
+                </p>
+
+                <div class="about-highlight">
+                    <strong>چشم‌انداز:</strong><br>
+                    خلق فضاهایی که در آن‌ها معماری، نه فقط پاسخ به نیاز، بلکه دعوتی به مکث، تأمل
+                    و تجربه‌ی عمیق‌تر از زندگی روزمره باشد.
+                </div>
+
+                <div class="about-meta">
+                    <div class="about-meta-item">
+                        <strong>تحصیلات</strong>
+                        دکترای معماری، گرایش فضاهای معاصر و نظریه‌ی معماری
+                    </div>
+                    <div class="about-meta-item">
+                        <strong>حوزه‌های تخصصی</strong>
+                        طراحی مسکونی، فضاهای عمومی، بازآفرینی شهری، طراحی داخلی مفهومی
+                    </div>
+                    <div class="about-meta-item">
+                        <strong>مکان فعالیت</strong>
+                        دبی · پروژه‌های بین‌المللی
+                    </div>
+                    <div class="about-meta-item">
+                        <strong>زبان‌ها</strong>
+                        فارسی، انگلیسی
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-photo-card">
+                <div class="about-photo-main">
+                    <!-- اینجا می‌تونی عکس پرتره حرفه‌ای یا فضای کاری بذاری -->
+                    <img src="IMAGE_URL_HERE_2" alt="مطهره مجدزاده">
+                </div>
+                <div class="about-photo-label">
+                    <span><strong>مطهره مجدزاده</strong>دکترای معماری · Founder & Lead Architect</span>
+                    <span>Studio: برگ‌ریزان | Dubai</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فلسفه طراحی -->
+    <section id="philosophy">
+        <h2 class="section-title">فلسفه‌ی طراحی و رویکرد</h2>
+        <p class="section-subtitle">
+            معماری به‌عنوان روایت؛ هر پروژه یک داستان است که در پلان، مقطع، نور و سایه نوشته می‌شود.
+        </p>
+
+        <div class="philosophy-grid">
+            <div>
+                <div class="pill-row">
+                    <span class="pill">معماری زمینه‌گرا</span>
+                    <span class="pill">نور به‌عنوان ماده‌ی اصلی</span>
+                    <span class="pill">جزئیات ساخت‌محور</span>
+                    <span class="pill">پایداری و انرژی</span>
+                </div>
+
+                <div class="philosophy-card">
+                    <strong>هر پروژه، یک گفت‌وگو است.</strong><br>
+                    از نخستین جلسه‌ی گفت‌وگو با کارفرما تا لحظه‌ای که نور از لبه‌ی پنجره روی
+                    کف می‌نشیند، فرآیند طراحی برای ما یک گفت‌وگوی مداوم است؛ میان خواسته‌ها،
+                    محدودیت‌ها، زمینه‌ی شهری، اقلیم، نور، ماده و زندگی روزمره‌ی کاربران.
+                    <div class="philosophy-points">
+                        <div class="philosophy-point">
+                            <strong>گوش دادن عمیق:</strong> فهم دقیق سبک زندگی، نیازها و رؤیاهای کارفرما
+                        </div>
+                        <div class="philosophy-point">
+                            <strong>ترجمه‌ی مفاهیم به فضا:</strong> تبدیل کلمات، احساسات و خاطرات به پلان، حجم و نور
+                        </div>
+                        <div class="philosophy-point">
+                            <strong>جزئیات ساخت‌محور:</strong> طراحی تا سطح دیتیل اجرایی و همراهی در اجرا
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="philosophy-mini-grid">
+                <div class="mini-card">
+                    <strong>نور و سایه</strong>
+                    طراحی بازشوها، حیاط‌ها و فضاهای نیمه‌باز به‌گونه‌ای که نور، عنصر اصلی
+                    شکل‌دهنده‌ی فضا باشد؛ نه فقط روشنایی، بلکه کیفیت حضور.
+                </div>
+                <div class="mini-card">
+                    <strong>ماده و بافت</strong>
+                    ترکیب مصالح طبیعی، بتن اکسپوز، چوب، فلز و شیشه با جزئیات دقیق، برای خلق
+                    فضاهایی که لمس‌شدنی و ماندگارند.
+                </div>
+                <div class="mini-card">
+                    <strong>پایداری و اقلیم</strong>
+                    استفاده از استراتژی‌های غیرفعال، سایه‌اندازی، تهویه‌ی طبیعی و کنترل نور
+                    برای کاهش مصرف انرژی و افزایش آسایش.
+                </div>
+                <div class="mini-card">
+                    <strong>روایت و تجربه</strong>
+                    هر مسیر، هر قاب دید، هر شکست نور، بخشی از روایتی است که کاربر در طول
+                    روز تجربه می‌کند.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- نمونه‌کارها -->
+    <section id="portfolio">
+        <h2 class="section-title">نمونه‌کارهای منتخب</h2>
+        <p class="section-subtitle">
+            از ویلاهای معاصر تا فضاهای عمومی شهری؛ مجموعه‌ای از پروژه‌ها که هرکدام روایت خاص خود را دارند.
+        </p>
+
+        <div class="portfolio-grid">
+            <!-- هر آیتم: یک عکس معماری مدرن/مینیمال/شهری -->
+            <div class="portfolio-item">
+                <img src="IMAGE_URL_HERE_3" alt="پروژه ۱">
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-caption">
+                    <strong>ویلا «خط نور»</strong>
+                    <span>طراحی ویلا در حاشیه‌ی شهر · محوریت دید به طبیعت و حیاط مرکزی</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="IMAGE_URL_HERE_4" alt="پروژه ۲">
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-caption">
+                    <strong>ساختمان اداری «لایه‌های شفاف»</strong>
+                    <span>پوسته‌ی دو لایه برای کنترل نور و ایجاد حریم بصری</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="IMAGE_URL_HERE_5" alt="پروژه ۳">
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-caption">
+                    <strong>بازآفرینی خانه‌ی قدیمی</strong>
+                    <span>ترکیب معماری سنتی با جزئیات معاصر در بافت تاریخی</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="IMAGE_URL_HERE_6" alt="پروژه ۴">
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-caption">
+                    <strong>گالری هنر شهری</strong>
+                    <span>فضای نمایش هنر معاصر با نور کنترل‌شده و مسیرهای سیال</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="IMAGE_URL_HERE_7" alt="پروژه ۵">
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-caption">
+                    <strong>کافه «حیاط پنهان»</strong>
+                    <span>فضای نیمه‌باز با حیاط مرکزی و بازی نور و سایه</span>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="IMAGE_URL_HERE_8" alt="پروژه ۶">
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-caption">
+                    <strong>پروژه‌ی مفهومی «برگ‌ریزان»</strong>
+                    <span>الهام از حرکت برگ‌ها در باد برای طراحی پوسته‌ی ساختمان</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- خدمات -->
+    <section id="services">
+        <h2 class="section-title">خدمات دفتر معماری</h2>
+        <p class="section-subtitle">
+            از ایده تا اجرا؛ همراهی کامل در تمام مراحل شکل‌گیری پروژه.
+        </p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <strong>طراحی معماری و حجم</strong>
+                طراحی کامل پروژه‌های مسکونی، اداری، تجاری و فرهنگی با رویکرد زمینه‌گرا و
+                توجه به جزئیات فضایی، نور، دید و حرکت.
+                <div class="service-tags">
+                    <span class="service-tag">کانسپت تا نقشه‌های اجرایی</span>
+                    <span class="service-tag">سه‌بعدی و رندر</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <strong>طراحی داخلی مفهومی</strong>
+                خلق فضاهای داخلی که با معماری بنا و سبک زندگی کاربران در یک روایت واحد
+                قرار می‌گیرند؛ از متریال تا نورپردازی.
+                <div class="service-tags">
+                    <span class="service-tag">مسکونی و ویلایی</span>
+                    <span class="service-tag">کافه و رستوران</span>
+                </div>
+            </div>
+            <div class="service-card">
+                <strong>نظارت و همراهی در اجرا</strong>
+                حضور در کنار تیم اجرا برای اطمینان از تحقق جزئیات طراحی، کیفیت ساخت و
+                هماهنگی میان کارفرما، پیمانکار و طراح.
+                <div class="service-tags">
+                    <span class="service-tag">بازدید دوره‌ای</span>
+                    <span class="service-tag">کنترل دیتیل‌ها</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فرآیند طراحی -->
+    <section id="process">
+        <h2 class="section-title">فرآیند طراحی و همکاری</h2>
+        <p class="section-subtitle">
+            شفاف، مرحله‌به‌مرحله و همراه با گفت‌وگوی مداوم با کارفرما.
+        </p>
+
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="process-step-number">۱</div>
+                <strong>گفت‌وگوی اولیه</strong>
+                شناخت نیازها، سبک زندگی، بودجه، زمان‌بندی و رؤیاهای شما برای پروژه.
+            </div>
+            <div class="process-step">
+                <div class="process-step-number">۲</div>
+                <strong>کانسپت و ایده</strong>
+                ارائه‌ی کانسپت‌های اولیه، اسکیس‌ها و حجم‌های مفهومی برای انتخاب مسیر.
+            </div>
+            <div class="process-step">
+                <div class="process-step-number">۳</div>
+                <strong>تکمیل طراحی</strong>
+                توسعه‌ی پلان‌ها، مقاطع، نماها، دیتیل‌ها و مدل سه‌بعدی پروژه.
+            </div>
+            <div class="process-step">
+                <div class="process-step-number">۴</div>
+                <strong>نظارت و اجرا</strong>
+                همراهی در اجرا، بازدیدهای دوره‌ای و کنترل کیفیت تا تحویل نهایی.
+            </div>
+        </div>
+    </section>
+
+    <!-- نظرات -->
+    <section id="testimonials">
+        <h2 class="section-title">آنچه کارفرماها می‌گویند</h2>
+        <p class="section-subtitle">
+            تجربه‌ی همکاری با مطهره مجدزاده از زبان کسانی که پروژه‌شان را به او سپرده‌اند.
+        </p>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div>
+                        <div class="testimonial-name">خانواده‌ی ن.</div>
+                        <div class="testimonial-role">ویلا در حاشیه‌ی شهر</div>
+                    </div>
+                    <div class="testimonial-rating">★ ۴.۹ / ۵</div>
+                </div>
+                <p>
+                    «هر روز صبح که نور از لبه‌ی پنجره روی کف می‌افتد، یادمان می‌آید که چقدر
+                    طراحی این خانه با زندگی ما هماهنگ است. جزئیاتی که در ابتدا شاید کوچک
+                    به‌نظر می‌رسید، حالا بخش مهمی از تجربه‌ی روزمره‌ی ماست.»
+                </p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div>
+                        <div class="testimonial-name">شرکت فناوری الف.</div>
+                        <div class="testimonial-role">ساختمان اداری</div>
+                    </div>
+                    <div class="testimonial-rating">★ ۵ / ۵</div>
+                </div>
+                <p>
+                    «دفتر جدید ما فقط یک فضای کاری نیست؛ جایی است که فرهنگ سازمانی‌مان را
+                    بازتاب می‌دهد. از نور، متریال و چیدمان فضاها تا فضاهای غیررسمی، همه‌چیز
+                    با دقت و حساسیت طراحی شده است.»
+                </p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div>
+                        <div class="testimonial-name">مالک کافه «حیاط پنهان»</div>
+                        <div class="testimonial-role">فضای عمومی</div>
+                    </div>
+                    <div class="testimonial-rating">★ ۴.۸ / ۵</div>
+                </div>
+                <p>
+                    «مشتری‌ها همیشه درباره‌ی حس خاص فضا صحبت می‌کنند؛ انگار وسط شهر، وارد
+                    یک دنیای دیگر می‌شوند. این دقیقاً همان چیزی بود که می‌خواستیم.»
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- تماس -->
+    <section id="contact">
+        <h2 class="section-title">تماس و رزرو جلسه</h2>
+        <p class="section-subtitle">
+            اگر پروژه‌ای در ذهن دارید، می‌توانیم از یک گفت‌وگوی ساده شروع کنیم.
+        </p>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <form onsubmit="event.preventDefault(); alert('پیام شما ثبت شد (سمت سرور باید پیاده‌سازی شود).');">
+                    <div class="form-row">
+                        <div>
+                            <label for="name">نام و نام خانوادگی</label>
+                            <input id="name" type="text" placeholder="مثلاً: علی رضایی">
+                        </div>
+                        <div>
+                            <label for="email">ایمیل</label>
+                            <input id="email" type="email" placeholder="example@mail.com">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label for="phone">شماره تماس</label>
+                            <input id="phone" type="tel" placeholder="+971 ...">
+                        </div>
+                        <div>
+                            <label for="project-type">نوع پروژه</label>
+                            <input id="project-type" type="text" placeholder="مسکونی، اداری، ویلا، بازآفرینی...">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="message">توضیحات پروژه</label>
+                        <textarea id="message" placeholder="مختصراً درباره‌ی پروژه، مکان، متراژ و انتظارات خود بنویسید..."></textarea>
+                    </div>
+                    <div style="margin-top:8px;">
+                        <button class="btn-primary" type="submit">
+                            ارسال درخواست جلسه
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <p>
+                    <strong>دفتر معماری مطهره مجدزاده</strong><br>
+                    دبی · پروژه‌های بین‌المللی
+                </p>
+                <p style="margin-top:10px;">
+                    برای هماهنگی جلسه‌ی مشاوره، می‌توانید از فرم کنار استفاده کنید یا از طریق
+                    راه‌های زیر در ارتباط باشید:
+                </p>
+                <p style="margin-top:10px;">
+                    ایمیل: <strong>info@mahdzadeh-architecture.com</strong><br>
+                    تلفن: <strong>+971-XX-XXX-XXXX</strong>
+                </p>
+
+                <div class="social-row">
+                    <div class="social-pill">
+                        <span class="icon"></span>
+                        <span>Instagram · @mahdzadeh.arch</span>
+                    </div>
+                    <div class="social-pill">
+                        <span class="icon"></span>
+                        <span>LinkedIn · Mahdazadeh Studio</span>
+                    </div>
+                    <div class="social-pill">
+                        <span class="icon"></span>
+                        <span>Behance · Architecture Portfolio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    © <span id="year"></span> دفتر معماری <span class="highlight">مطهره مجدزاده</span> · برگ‌ریزانِ فضا، نور و زندگی.
+</footer>
+
+<script>
+    // سال فوتر
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ایجاد برگ‌ریزان
+    function createLeaf() {
+        const leaf = document.createElement('div');
+        leaf.classList.add('leaf');
+
+        const size = Math.random() * 14 + 10; // 10 تا 24
+        leaf.style.width = size + 'px';
+        leaf.style.height = size + 'px';
+
+        const startX = Math.random() * window.innerWidth;
+        leaf.style.left = startX + 'px';
+
+        const duration = Math.random() * 10 + 10; // 10 تا 20 ثانیه
+        leaf.style.animationDuration = duration + 's';
+
+        const delay = Math.random() * 10;
+        leaf.style.animationDelay = delay + 's';
+
+        const rotate = Math.random() * 360;
+        leaf.style.transform = 'rotate(' + rotate + 'deg)';
+
+        document.body.appendChild(leaf);
+
+        setTimeout(() => {
+            leaf.remove();
+        }, (duration + delay) * 1000);
+    }
+
+    // تولید چندین برگ در بازه‌های زمانی
+    setInterval(createLeaf, 800);
+    for (let i = 0; i < 15; i++) {
+        setTimeout(createLeaf, i * 400);
+    }
+</script>
+
+</body>
+</html>
